@@ -28,8 +28,15 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/fonts/fonts.scss",
+              "src/scss/theme.scss",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -123,6 +130,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "find-your-animal"
 }

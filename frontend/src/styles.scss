@@ -1,1 +1,81 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "_variables";
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html,
+body {
+    font-family: "Commissioner";
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: $mainTextColor;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.container {
+    max-width: $maxContainerWidth;
+    margin: 0 auto;
+}
+
+.dialog-close {
+    position: absolute;
+    top: -19px;
+    right: -19px;
+    &__icon {
+        font-size: 22px;
+    }
+}
+
+.btn {
+    font-family: "Commissioner";
+    font-weight: 600;
+    font-size: 18px;
+    &__text {
+        line-height: 2em;
+        color: #fff;
+    }
+}
