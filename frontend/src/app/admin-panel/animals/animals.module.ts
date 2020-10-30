@@ -6,12 +6,41 @@ import { AnimalsComponent } from './animals.component';
 import { TableAnimalsComponent } from './table-animals/table-animals.component';
 import { AnimalManageComponent } from './animal-manage/animal-manage.component';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   declarations: [AnimalsComponent, TableAnimalsComponent, AnimalManageComponent],
   imports: [
     CommonModule,
-    AnimalsRoutingModule
+    AnimalsRoutingModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    FontAwesomeModule,
+    MatRippleModule,
+    MatSortModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    DragDropModule
   ]
 })
 export class AnimalsModule { }

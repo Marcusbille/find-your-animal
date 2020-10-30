@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "find-your-animal"
+  "defaultProject": "find-your-animal",
+  "cli": {
+    "analytics": false
+  }
 }

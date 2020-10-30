@@ -79,3 +79,59 @@ ul {
         color: #fff;
     }
 }
+
+.table {
+    width: 100% !important;
+    &__td {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        line-height: 1.5;
+    }
+    &__th {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+    &__controls {
+        display: flex;
+        flex-direction: row;
+    }
+    &__controls-btn {
+        font-size: 16px;
+        line-height: 1em;
+        height: 35px;
+        width: 35px;
+        color: #fff;
+        border-radius: 50%;
+        &:not(:first-child) {
+            margin-left: 8px;
+        }
+    }
+    &__delete {
+        background-color: #ef5350;
+    }
+    &__edit {
+        background-color: #fb8c00;
+    }
+}
+
+.admin-panel {
+    &__controls {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px 0;
+    }
+    &__controls-btn {
+        line-height: 1em !important;
+        padding: 10px 15px !important;
+        margin-left: 20px !important;
+    }
+    &__search {
+        width: 30%;
+        font-size: 18px;
+        margin-left: 40px;
+    }
+    &__search-field {
+        width: 100%;
+    }
+}
