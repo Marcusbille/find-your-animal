@@ -22,7 +22,18 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// db.shelters = require("./shelters.model.js")(sequelize, Sequelize);
+db.shelters = require("./shelters.model.js")(sequelize, Sequelize);
+db.dictionary = require("./dictionary.model.js")(sequelize, Sequelize);
+db.pets_main = require("./pets_main.model.js")(sequelize, Sequelize);
+db.pets_additional = require("./pets_additional.model.js")(sequelize, Sequelize);
+db.pets_catch_info = require("./pets_catch_info.model.js")(sequelize, Sequelize);
+db.pets_health = require("./pets_health.model.js")(sequelize, Sequelize);
+db.pets_images = require("./pets_images.model.js")(sequelize, Sequelize);
+db.pets_move = require("./pets_move.model.js")(sequelize, Sequelize);
+db.pets_owners = require("./pets_owners.model.js")(sequelize, Sequelize);
+db.pets_responsible = require("./pets_responsible.model.js")(sequelize, Sequelize);
+db.pets_sanitasion = require("./pets_sanitasion.model.js")(sequelize, Sequelize);
+db.pets_vaccination = require("./pets_vaccination.model.js")(sequelize, Sequelize);
 
 
 module.exports = db;
