@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { Pet_main } from 'src/app/shared/models/pet_main.model';
 
 export interface Animal {
   card_num: string;
@@ -56,14 +55,15 @@ const ELEMENT_DATA: Animal[] = [
   templateUrl: './table-animals.component.html',
   styleUrls: ['./table-animals.component.scss']
 })
-export class TableAnimalsComponent implements OnInit, AfterViewInit {
+export class TableAnimalsComponent implements OnInit {
 
   displayedColumns: string[] = ['card_num', 'species', 'age', 'weight', 'name', 'gender', 'breed', 'hair_color', 'hair_type', 'size', 'id_tag', 'shelter_name', 'district', 'date_in', 'reason', 'socialised', 'actions'];
   dataSource: any;
-  animals: Pet_main[];
+  animals: any[];
 
   searchStr: string;
   filters = [];
+  filtersToDelete = ['card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason'];
   activeFilters = [];
   lastAddedFilter: string;
 
@@ -77,51 +77,9 @@ export class TableAnimalsComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.animals);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    console.log(this.animals);
-    this.filters.push({
-      name: 'species',
-      options: [
-        'кот', 'собака'
-      ]
-    })
-    this.activeFilters.push({
-      name: 'species',
-      options: []
-    });
-    this.filters.push({
-      name: 'gender',
-      options: [
-        'мужской', 'женский'
-      ]
-    })
-    this.activeFilters.push({
-      name: 'gender',
-      options: []
-    });
-    this.filters.push({
-      name: 'breed',
-      options: [
-        'метис', 'мопс', 'кек', 'лол'
-      ]
-    })
-    this.activeFilters.push({
-      name: 'breed',
-      options: []
-    });
-    this.filters.push({
-      name: 'hair_color',
-      options: [
-        'черный', 'белый', 'серый', 'рыжий'
-      ]
-    })
-    this.activeFilters.push({
-      name: 'hair_color',
-      options: []
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    for (let field in this.animals[0]) {
+      this.getFilters(this.animals, field);
+    }
   }
 
   updateTable() {
@@ -129,14 +87,16 @@ export class TableAnimalsComponent implements OnInit, AfterViewInit {
   }
 
   getFilters(array: any[], field: string) {
-    this.filters.push({
-      name: field,
-      options: [...new Set(array.map(item => item[`${field}`]))].sort()
-    });
-    this.activeFilters.push({
-      name: field,
-      options: []
-    });
+    if (!this.filtersToDelete.find(item => item == field)) {
+      this.filters.push({
+        name: field,
+        options: [...new Set(array.map(item => item[`${field}`]))].sort()
+      });
+      this.activeFilters.push({
+        name: field,
+        options: []
+      });
+    }
   }
 
   changeFilter(event: any, filterName: string, filterOption: string) {
@@ -151,17 +111,15 @@ export class TableAnimalsComponent implements OnInit, AfterViewInit {
     curFilter.options.push({
       option: filterOption
     });
-    this.activeFilters = this.activeFilters.slice();
     this.lastAddedFilter = filterName;
-    this.dataSource.data = this.filterArray(ELEMENT_DATA, this.activeFilters);
+    this.dataSource.data = this.filterArray(this.animals, this.activeFilters);
   }
 
   removeFilter(filterName: string, filterOption: string) {
     let curFilter = this.activeFilters.find(filter => filter.name == filterName);
     let optionIndex = curFilter.options.findIndex(item => item.option == filterOption);
     curFilter.options.splice(optionIndex, 1);
-    this.activeFilters = this.activeFilters.slice();
-    this.dataSource.data = this.filterArray(ELEMENT_DATA, this.activeFilters);
+    this.dataSource.data = this.filterArray(this.animals, this.activeFilters);
   }
 
   checkDisabled(filterName: string, filterOption: string, array: any, checkbox: MatCheckbox) {
