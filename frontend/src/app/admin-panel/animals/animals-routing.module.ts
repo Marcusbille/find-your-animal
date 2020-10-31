@@ -29,7 +29,10 @@ const routes: Routes = [
   },
   {
     path: 'card/:animalId',
-    component: CardAnimalComponent
+    component: CardAnimalComponent,
+    resolve: {
+      animal: AnimalResolverService
+    }
   }
 ];
 

@@ -57,7 +57,7 @@ const ELEMENT_DATA: Animal[] = [
 })
 export class TableAnimalsComponent implements OnInit {
 
-  displayedColumns: string[] = ['card_num', 'species', 'age', 'weight', 'name', 'gender', 'breed', 'hair_color', 'hair_type', 'size', 'id_tag', 'shelter_name', 'district', 'date_in', 'reason', 'socialised', 'actions'];
+  displayedColumns: string[] = ['show_card', 'card_num', 'species', 'age', 'weight', 'name', 'gender', 'breed', 'hair_color', 'hair_type', 'size', 'id_tag', 'shelter_name', 'district', 'date_in', 'reason', 'socialised', 'actions'];
   dataSource: any;
   animals: any[];
 
@@ -175,6 +175,10 @@ export class TableAnimalsComponent implements OnInit {
     if (emptyFilters == filters.length)
       return array;
     return pipedPets;
+  }
+
+  navToCard(id: number) {
+    this.router.navigate([this.router.url, 'card', id]);
   }
 
   addNew() {

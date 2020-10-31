@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card-animal',
@@ -7,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardAnimalComponent implements OnInit {
 
-  petNum: string[] = ['1', '2'];
+  animal: any;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
+    this.animal = this.route.snapshot.data.animal;
+    console.log(this.animal);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

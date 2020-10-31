@@ -14,8 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { faChevronLeft, fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -43,6 +43,6 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas, far)
-    library.addIcons(faTimesCircle);
+    library.addIcons(faTimesCircle, faEye, faChevronLeft);
   }
 }
