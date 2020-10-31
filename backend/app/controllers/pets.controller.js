@@ -37,6 +37,34 @@ Pet_owners.belongsTo(Pet_main, { foreignKey: 'pet_num' });
 Pet_main.belongsTo(Shelter, { foreignKey: 'shelter_id' });
 
 
+exports.getReadyPets = (req, res) => {
+    let id = req.params.id;
+    Pet_main.findAll({
+        where: {
+            shelter_id: id
+        },
+        include: [{
+                model: Pet_additional,
+                where: {
+                    socialised: 'да'
+                }
+            },
+            {
+                model: Pet_owners,
+                where: {
+                    [Op.is]: null
+                }
+            }
+        ]
+    }).then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving shelters."
+        });
+    });
+}
+
 
 exports.getAllPets = (req, res) => {
     Pet_main.findAll({

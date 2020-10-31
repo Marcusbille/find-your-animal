@@ -29,5 +29,7 @@ module.exports = app => {
     router.put('/owner/:id', pets.updatePet_owner);
     router.put('/responsible/:id', pets.updatePet_responsible);
 
+    router.get("/petstoshelter/:id", pets.getReadyPets);
+
     app.use('/api/pets', router);
 };
