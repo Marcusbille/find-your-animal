@@ -38,8 +38,7 @@ Pet_main.belongsTo(Shelter, { foreignKey: 'shelter_id' });
 
 
 
-exports.getAllPetsPartly = (req, res) => {
-
+exports.getAllPets = (req, res) => {
     Pet_main.findAll({
             where: {
                 shelter_id: {
@@ -66,6 +65,7 @@ exports.getAllPetsPartly = (req, res) => {
             let arr = [];
             data.forEach(e => {
                 arr.push({
+                    id: e.id,
                     card_num: e.card_num,
                     species: e.species,
                     age: e.age,
@@ -93,6 +93,36 @@ exports.getAllPetsPartly = (req, res) => {
         });
 };
 
+exports.getOnePet = (req, res) => {
+    Pet_main.findAll({
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                    model: Pet_additional
+                }, {
+                    model: Pet_catch_info
+                },
+                {
+                    model: Pet_move
+                },
+                {
+                    model: Pet_responsible
+                },
+                {
+                    model: Shelter
+                }
+            ]
+        })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving shelters."
+            });
+        });
+};
 
 exports.deletePet = (req, res) => {
     let pet_id = req.params.id
@@ -445,7 +475,7 @@ exports.updatePet_responsible = (req, res) => {
 
 
 
-exports.updatePet_owner = (req, res) => {
+exports.createPet_owner = (req, res) => {
     let pet_id = req.params.id;
     let owner = {
         legal_entity: req.body.legal_entity,
@@ -465,158 +495,25 @@ exports.updatePet_owner = (req, res) => {
         });
 }
 
-
-exports.createPet_owner
-
-
-// exports.findAllForShelter = (req, res) => {
-//     const id = req.params.id;
-
-//     Contact.findAll({
-//             where: {
-//                 shelter_id: id
-//             },
-//             order: [
-//                 ['id', 'ASC']
-//             ]
-//         })
-//         .then(data => {
-//             res.send(data);
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while retrieving contacts."
-//             });
-//         });
-// };
-
-// if (req.body.pet_additional) {
-//     Pet_additional.update(req.body, {
-//             where: { pet_num: pet_id }
-//         })
-//         .then(num => {
-//             if (num == 1) {
-//                 res.send({
-//                     message: "Pet_additional was updated successfully."
-//                 });
-//             } else {
-//                 res.send({
-//                     message: `Cannot update Pet_additional with id=${id}`
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send(err);
-//         });
-// }
-// if (req.body.pet_catch_info) {
-//     Pet_catch_info.update(req.body, {
-//             where: { pet_num: pet_id }
-//         })
-//         .then(num => {
-//             if (num == 1) {
-//                 res.send({
-//                     message: "Pet_catch_info was updated successfully."
-//                 });
-//             } else {
-//                 res.send({
-//                     message: `Cannot update Pet_catch_info with id=${id}`
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send(err);
-//         });
-// }
-// exports.findOne = (req, res) => {
-//     const id = req.params.id;
-
-//     Pet.findByPk(id)
-//         .then(data => {
-//             res.send(data);
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: "Error retrieving Pet with id=" + id
-//             });
-//         });
-// };
-
-// exports.update = (req, res) => {
-//     const id = req.params.id;
-
-//     Pet.update(req.body, {
-//             where: { id: id }
-//         })
-//         .then(num => {
-//             if (num == 1) {
-//                 res.send({
-//                     message: "Pet was updated successfully."
-//                 });
-//             } else {
-//                 res.send({
-//                     message: `Cannot update Pet with id=${id}. Maybe pet was not found or req.body is empty!`
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: "Error updating Pet with id=" + id
-//             });
-//         });
-// };
-
-// exports.delete = (req, res) => {
-//     const id = req.params.id;
-
-//     Pet.destroy({
-//             where: { id: id }
-//         })
-//         .then(num => {
-//             if (num == 1) {
-//                 res.send({
-//                     message: "pet was deleted successfully!"
-//                 });
-//             } else {
-//                 res.send({
-//                     message: `Cannot delete pet with id=${id}. Maybe pet was not found!`
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: "Could not delete pet with id=" + id
-//             });
-//         });
-// };
-
-// exports.deleteAll = (req, res) => {
-//     Pet.destroy({
-//             where: {},
-//             truncate: false
-//         })
-//         .then(nums => {
-//             res.send({ message: `${nums} Tutorials were deleted successfully!` });
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while removing all tutorials."
-//             });
-//         });
-// };
-
-// exports.findAllByShelter = (req, res) => {
-
-//     Pet.findAll({
-//             attributes: { exclude: ['description', 'shelter_id', 'state'] },
-//             where: { shelter_id: req.params.shelter_id }
-//         })
-//         .then(data => {
-//             res.send(data);
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message: err.message || "Some error occurred while retrieving data."
-//             });
-//         });
-// };
+exports.updatePet_owner = (req, res) => {
+    let pet_id = req.params.id;
+    Pet_owners.update(req.body, {
+            where: { pet_num: pet_id }
+        })
+        .then(num => {
+            if (num == 1) {
+                res.send({
+                    message: "Pet_owner was updated successfully."
+                });
+            } else {
+                res.send({
+                    message: `Cannot update Pet_owner with pet_id=${id}`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error updating Pet_owner with pet_id=" + id
+            });
+        });
+}

@@ -3,7 +3,7 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    router.get("/", pets.getAllPetsPartly);
+    router.get("/", pets.getAllPets);
 
     app.use('/api/pets', router);
 };
