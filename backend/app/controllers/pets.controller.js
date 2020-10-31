@@ -148,90 +148,90 @@ exports.deletePet = (req, res) => {
 }
 
 exports.createPet = (req, res) => {
-    let pet_id;
-    let main = {
-        card_num: req.body.main.card_num,
-        species: req.body.main.species,
-        age: req.body.main.age,
-        weight: req.body.main.weight,
-        name: req.body.main.name,
-        gender: req.body.main.gender,
-        breed: req.body.main.breed,
-        hair_color: req.body.main.hair_color,
-        hair_type: req.body.main.hair_type,
-        ears_type: req.body.main.ears_type,
-        tail_type: req.body.main.tail_type,
-        size: req.body.main.size,
-        enclosure: req.body.main.enclosure,
-        shelter_id: req.body.main.shelter_id
-    };
-    let additional = {
-        id_tag: req.body.additional.id_tag,
-        ster_date: req.body.additional.ster_date,
-        doctor: req.body.additional.doctor,
-        socialised: req.body.additional.socialised,
-        pet_num: pet_id
-    };
-    let catch_info = {
-        order_num: req.body.catch_info.order_num,
-        order_data: req.body.catch_info.order_data,
-        district: req.body.catch_info.district,
-        catch_report: req.body.catch_info.catch_report,
-        catch_address: req.body.catch_info.catch_address,
-        pet_num: pet_id
-    };
-    let move = {
-        date_in: req.body.move.date_in,
-        act: req.body.move.act,
-        date_out: req.body.move.date_out,
-        reason: req.body.move.reason,
-        order: req.body.move.order,
-        pet_num: pet_id
-    };
-    let responsible = {
-        person: req.body.responsible.person,
-        pet_num: pet_id
-    };
+    res.send(req.body);
+    // let pet_id;
+    // let main = {
+    //     card_num: req.body.main.card_num,
+    //     species: req.body.main.species,
+    //     age: req.body.main.age,
+    //     weight: req.body.main.weight,
+    //     name: req.body.main.name,
+    //     gender: req.body.main.gender,
+    //     breed: req.body.main.breed,
+    //     hair_color: req.body.main.hair_color,
+    //     hair_type: req.body.main.hair_type,
+    //     ears_type: req.body.main.ears_type,
+    //     tail_type: req.body.main.tail_type,
+    //     size: req.body.main.size,
+    //     enclosure: req.body.main.enclosure,
+    //     shelter_id: req.body.main.shelter_id
+    // };
+    // let additional = {
+    //     id_tag: req.body.additional.id_tag,
+    //     ster_date: req.body.additional.ster_date,
+    //     doctor: req.body.additional.doctor,
+    //     socialised: req.body.additional.socialised,
+    //     pet_num: pet_id
+    // };
+    // let catch_info = {
+    //     order_num: req.body.catch_info.order_num,
+    //     order_data: req.body.catch_info.order_data,
+    //     district: req.body.catch_info.district,
+    //     catch_report: req.body.catch_info.catch_report,
+    //     catch_address: req.body.catch_info.catch_address,
+    //     pet_num: pet_id
+    // };
+    // let move = {
+    //     date_in: req.body.move.date_in,
+    //     act: req.body.move.act,
+    //     date_out: req.body.move.date_out,
+    //     reason: req.body.move.reason,
+    //     order: req.body.move.order,
+    //     pet_num: pet_id
+    // };
+    // let responsible = {
+    //     person: req.body.responsible.person,
+    //     pet_num: pet_id
+    // };
 
-    Pet_main.create(main)
-        .then(data => {
-            res.send(data);
-            pet_id = data.id;
-            Pet_additional.create(additional).then(data => {
-                res.send(data)
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message
-                });
-            });
-            Pet_catch_info.create(catch_info).then(data => {
-                res.send(data)
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message
-                });
-            });
-            Pet_move.create(move).then(data => {
-                res.send(data)
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message
-                });
-            });
-            Pet_responsible.create(responsible).then(data => {
-                res.send(data)
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message
-                });
-            });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message
-            });
-        });
-
+    // Pet_main.create(main)
+    //     .then(data => {
+    //         res.send(data);
+    //         pet_id = data.id;
+    //         Pet_additional.create(additional).then(data => {
+    //             res.send(data)
+    //         }).catch(err => {
+    //             res.status(500).send({
+    //                 message: err.message
+    //             });
+    //         });
+    //         Pet_catch_info.create(catch_info).then(data => {
+    //             res.send(data)
+    //         }).catch(err => {
+    //             res.status(500).send({
+    //                 message: err.message
+    //             });
+    //         });
+    //         Pet_move.create(move).then(data => {
+    //             res.send(data)
+    //         }).catch(err => {
+    //             res.status(500).send({
+    //                 message: err.message
+    //             });
+    //         });
+    //         Pet_responsible.create(responsible).then(data => {
+    //             res.send(data)
+    //         }).catch(err => {
+    //             res.status(500).send({
+    //                 message: err.message
+    //             });
+    //         });
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send({
+    //             message: err.message
+    //         });
+    //     });
 }
 
 

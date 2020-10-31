@@ -3,6 +3,8 @@ module.exports = app => {
 
     var router = require("express").Router();
 
+    router.post("/", pets.createPet);
+
     router.get("/", pets.getAllPets);
 
     router.get("/:id", pets.getOnePet);

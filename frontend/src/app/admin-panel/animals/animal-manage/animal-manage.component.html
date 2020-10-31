@@ -8,7 +8,7 @@
             </mat-form-field>
             <mat-form-field class="form__field">
                 <mat-label>Вид</mat-label>
-                <mat-select required formControlName="species" (valueChange)="speciesChanged($event)">
+                <mat-select required formControlName="species" (selectionChange)="speciesChanged($event)">
                     <mat-option>--</mat-option>
                     <mat-option [value]="'собака'">собака</mat-option>
                     <mat-option [value]="'кошка'">кошка</mat-option>
@@ -199,7 +199,7 @@
             </mat-form-field>
             <mat-form-field class="form__field">
                 <mat-label>Причина выбытия</mat-label>
-                <mat-select required formControlName="reason">
+                <mat-select formControlName="reason">
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let move_type of move_types" [value]="move_type.value">
                         {{move_type.value}}
@@ -301,7 +301,8 @@
                 изменения</span></button>
     </ng-container>
     <ng-template #elseTemplate>
-        <button class="pet__btn btn" mat-flat-button color="primary"><span class="btn__text">Добавить
+        <button class="pet__btn btn" mat-flat-button color="primary" (click)="createPet()"><span
+                class="btn__text">Добавить
                 животное</span></button>
     </ng-template>
 </div>

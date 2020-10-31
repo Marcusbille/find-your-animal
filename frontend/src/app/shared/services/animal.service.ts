@@ -36,6 +36,10 @@ export class AnimalService {
     return this.http.get<any[]>(`${this.apiUrl}/api/pets/owner/${id}`).pipe(catchError(this.handleError));
   }
 
+  postPet(data) {
+    return this.http.post(`${this.apiUrl}/api/pets`, data).pipe(catchError(this.handleError));
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Destroyer } from 'src/app/shared/destroyer';
 import { AnimalService } from 'src/app/shared/services/animal.service';
 import { DictionaryService } from 'src/app/shared/services/dictionary.service';
 import { ShelterService } from 'src/app/shared/services/shelter.service';
@@ -12,7 +14,7 @@ import { ShelterService } from 'src/app/shared/services/shelter.service';
   templateUrl: './animal-manage.component.html',
   styleUrls: ['./animal-manage.component.scss']
 })
-export class AnimalManageComponent implements OnInit {
+export class AnimalManageComponent extends Destroyer implements OnInit, OnDestroy {
 
   petMain: FormGroup;
   petAdditional: FormGroup;
@@ -38,6 +40,7 @@ export class AnimalManageComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private animalService: AnimalService,
     private dictionaryService: DictionaryService, private shelterService: ShelterService) {
+    super();
     this.createPetMain();
     this.createPetAdditional();
     this.createPetCatchInfo();
@@ -51,12 +54,11 @@ export class AnimalManageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.shelterService.getShelters().subscribe(data => {
+    this.shelterService.getShelters().pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.shelters = data;
     })
-    this.dictionaryService.getDictionary().subscribe(data => {
+    this.dictionaryService.getDictionary().pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.dictionary = data;
-      console.log(data);
       this.dictionary.forEach(item => {
         if (item.list == 'cat_breeds' || item.list == 'dog_breeds')
           this.breeds.push(item);
@@ -73,7 +75,6 @@ export class AnimalManageComponent implements OnInit {
       });
       if (this.curId) {
         this.animal = this.route.snapshot.data.animal;
-        console.log(this.animal);
         this.patchPetMain();
         this.patchPetAdditional();
         this.patchPetCatchInfo();
@@ -301,4 +302,22 @@ export class AnimalManageComponent implements OnInit {
       series: data.series,
     });
   }
+
+  createPet() {
+    let main = this.petMain.value;
+    let additional = this.petAdditional.value;
+    let catch_info = this.petCatchInfo.value;
+    let move = this.petMove.value;
+    let responsible = this.petResponsible.value;
+    let data = {
+      main: main,
+      additional: additional,
+      catch_info: catch_info,
+      move: move,
+      responsible: responsible
+    }
+    console.log(data);
+    this.animalService.postPet({ id: 5, name: 'kek' });
+  }
+
 }
