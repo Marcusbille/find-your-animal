@@ -37,7 +37,6 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
   sizes = ['маленький', 'средний', 'крупный', 'очень крупный'];
   move_types = [];
   shelters = [];
-
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private animalService: AnimalService,
     private dictionaryService: DictionaryService, private shelterService: ShelterService) {
     super();
@@ -280,7 +279,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
 
   patchPetResponsible() {
     this.petResponsible.patchValue({
-      shelter: this.animal.shelter_id,
+      // shelter: this.animal.shelter_id,
       person: this.animal.Pets_responsible.person,
     });
   }
@@ -305,19 +304,30 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
 
   createPet() {
     let main = this.petMain.value;
+    main.shelter_id = this.petResponsible.get('shelter').value;
     let additional = this.petAdditional.value;
     let catch_info = this.petCatchInfo.value;
     let move = this.petMove.value;
     let responsible = this.petResponsible.value;
-    let data = {
-      main: main,
-      additional: additional,
-      catch_info: catch_info,
-      move: move,
-      responsible: responsible
-    }
-    console.log(data);
-    this.animalService.postPet({ id: 5, name: 'kek' });
+
+    this.animalService.postPet_main(main).subscribe(data => {
+      console.log(data);
+      let pet_id = data['id'];
+      this.animalService.postPet_additional(additional, pet_id).subscribe(res => {
+        console.log(res);
+        this.animalService.postPet_catch_info(catch_info, pet_id).subscribe(res => {
+          console.log(res);
+          this.animalService.postPet_move(move, pet_id).subscribe(res => {
+            console.log(res);
+            this.animalService.postPet_responsible(responsible, pet_id).subscribe(res => {
+              console.log(res);
+            })
+          })
+        })
+      })
+    })
+
+
   }
 
 }

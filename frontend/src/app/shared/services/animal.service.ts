@@ -36,8 +36,24 @@ export class AnimalService {
     return this.http.get<any[]>(`${this.apiUrl}/api/pets/owner/${id}`).pipe(catchError(this.handleError));
   }
 
-  postPet(data) {
-    return this.http.post(`${this.apiUrl}/api/pets`, data).pipe(catchError(this.handleError));
+  postPet_main(data) {
+    return this.http.post(`${this.apiUrl}/api/pets/main`, data)
+  }
+
+  postPet_additional(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/additional/${id}`, data)
+  }
+
+  postPet_catch_info(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/catch/${id}`, data)
+  }
+
+  postPet_move(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/move/${id}`, data)
+  }
+
+  postPet_responsible(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/responsible/${id}`, data)
   }
 
   handleError(error) {
