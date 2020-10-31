@@ -46,10 +46,10 @@ export class AnimalManageComponent implements OnInit {
       this.patchPetCatchInfo();
       this.patchPetHealth();
       this.patchPetMove();
-      this.patchPetOwners();
+      //this.patchPetOwners();
       this.patchPetResponsible();
-      this.patchPetSanitation();
-      this.patchPetVaccination();
+      //this.patchPetSanitation();
+      //this.patchPetVaccination();
     }
   }
 
