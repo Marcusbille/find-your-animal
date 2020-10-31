@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AnimalResolverService } from 'src/app/shared/services/animal-resolver.service';
 import { AnimalsResolverService } from 'src/app/shared/services/animals-resolver.service';
 import { AnimalManageComponent } from './animal-manage/animal-manage.component';
+import { CardAnimalComponent } from './card-animal/card-animal.component';
 import { TableAnimalsComponent } from './table-animals/table-animals.component';
 
 
@@ -25,6 +26,10 @@ const routes: Routes = [
     resolve: {
       animal: AnimalResolverService
     }
+  },
+  {
+    path: 'card/:animalId',
+    component: CardAnimalComponent
   }
 ];
 

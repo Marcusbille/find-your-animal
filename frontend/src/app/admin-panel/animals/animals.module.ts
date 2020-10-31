@@ -22,9 +22,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CardAnimalComponent } from './card-animal/card-animal.component';
 
 @NgModule({
-  declarations: [AnimalsComponent, TableAnimalsComponent, AnimalManageComponent],
+  declarations: [AnimalsComponent, TableAnimalsComponent, AnimalManageComponent, CardAnimalComponent],
   imports: [
     CommonModule,
     AnimalsRoutingModule,
