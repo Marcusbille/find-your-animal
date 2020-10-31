@@ -22,10 +22,6 @@ app.use(cors());
 const db = require("./app/models");
 db.sequelize.sync();
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
-
-});
 
 require("./app/routes/pets.routes")(app);
 

@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Pet_catch_info = sequelize.define("Pets_catch_info", {
-        card_num: {
-            type: Sequelize.STRING
-        },
         order_num: {
             type: Sequelize.STRING
         },
@@ -17,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         catch_address: {
             type: Sequelize.STRING
+        },
+        pet_num: {
+            type: Sequelize.INTEGER
         }
     });
 

@@ -1,10 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Pet_image = sequelize.define("Pets_images", {
-        card_num: {
-            type: Sequelize.STRING
-        },
         image_src: {
             type: Sequelize.STRING
+        },
+        pet_num: {
+            type: Sequelize.INTEGER
         }
     });
 

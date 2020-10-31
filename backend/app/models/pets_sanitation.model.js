@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Pet_sanitation = sequelize.define("Pets_sanitation", {
-        card_num: {
-            type: Sequelize.STRING
-        },
         order: {
             type: Sequelize.INTEGER
         },
@@ -15,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
         dose: {
             type: Sequelize.STRING
         },
+        pet_num: {
+            type: Sequelize.INTEGER
+        }
     });
 
     return Pet_sanitation;

@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         weight: {
-            type: Sequelize.DOUBLE
+            type: Sequelize.DECIMAL(5, 1)
         },
         name: {
             type: Sequelize.STRING
@@ -46,8 +46,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         shelter_id: {
             type: Sequelize.INTEGER,
-        },
-
+        }
     });
 
     return Pet_main;

@@ -22,9 +22,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.pets_main = require("./pets_main.model.js")(sequelize, Sequelize);
 db.shelters = require("./shelters.model.js")(sequelize, Sequelize);
 db.dictionary = require("./dictionary.model.js")(sequelize, Sequelize);
-db.pets_main = require("./pets_main.model.js")(sequelize, Sequelize);
 db.pets_additional = require("./pets_additional.model.js")(sequelize, Sequelize);
 db.pets_catch_info = require("./pets_catch_info.model.js")(sequelize, Sequelize);
 db.pets_health = require("./pets_health.model.js")(sequelize, Sequelize);

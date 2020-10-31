@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Pet_owners = sequelize.define("Pets_owners", {
-        card_num: {
-            type: Sequelize.STRING
-        },
         legal_entity: {
             type: Sequelize.STRING,
             allowNull: true
@@ -14,6 +11,9 @@ module.exports = (sequelize, Sequelize) => {
         individual: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        pet_num: {
+            type: Sequelize.INTEGER
         }
     });
 
