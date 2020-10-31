@@ -5,10 +5,7 @@ const Sequelize = require("sequelize");
 
 
 exports.getList = (req, res) => {
-    Dictionary.findAll({
-        where: { list: req.params.list },
-        exclude: ['list']
-    }).then(data => {
+    Dictionary.findAll().then(data => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
