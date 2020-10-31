@@ -1,7 +1,7 @@
 <section class="animal">
     <div class="animal__container container">
         <div class="animal__header">
-            <button class="animal__back back">
+            <button class="animal__back back" (click)="goBack()">
                 <fa-icon class="back__icon icon" icon="chevron-left"></fa-icon>
                 <span class="back__text">Назад</span>
             </button>
@@ -27,10 +27,8 @@
                 </div>
                 <p class="animal__text">Питомец находится в приюте "{{shelter.name}}", район: {{shelter.address}}.
                 </p>
-                <p class="animal__text"> Для связи с приютом вы можете позвонить по номеру <a [href]="'tel:+' + shelter.phone">+{{shelter.phone}}</a></p>
-                <button class="animal__request btn" mat-raised-button color="primary">
-                    <span class="btn__text">Оформить заявку</span>
-                </button>
+                <p class="animal__text"> Для связи с приютом вы можете позвонить по номеру <a
+                        [href]="'tel:+' + shelter.phone">+{{shelter.phone}}</a></p>
             </div>
         </div>
     </div>

@@ -17,6 +17,10 @@ export class ShelterService {
     return this.http.get<any[]>(`${this.apiUrl}/api/shelters`).pipe(catchError(this.handleError));
   }
 
+  getOneShelter(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/shelters/${id}`).pipe(catchError(this.handleError));
+  }
+
 
   handleError(error) {
     let errorMessage = '';

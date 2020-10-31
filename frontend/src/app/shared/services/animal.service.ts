@@ -92,6 +92,10 @@ export class AnimalService {
     return this.http.put(`${this.apiUrl}/api/pets/responsible/${id}`, data)
   }
 
+  getPetsByShelter(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/petstoshelter/${id}`);
+  }
+
   handleError(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

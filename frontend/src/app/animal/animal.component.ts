@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Animal } from '../admin-panel/animals/table-animals/table-animals.component';
 import { Shelter } from '../shared/models/shelter.model';
 import { Location } from '@angular/common';
 
@@ -14,7 +13,7 @@ import { Location } from '@angular/common';
 export class AnimalComponent implements OnInit {
 
   previous: any;
-  animal: Animal;
+  animal: any;
   shelter: Shelter;
 
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private location: Location) { }
@@ -23,20 +22,6 @@ export class AnimalComponent implements OnInit {
     this.animal = this.route.snapshot.data.animal;
     this.shelter = this.route.snapshot.data.shelter;
   }
-
-  clickedMarker(infowindow) {
-    console.log(this.previous);
-    if (this.previous) {
-      this.previous.close();
-    }
-    this.previous = infowindow;
-  }
-
-  // openAuthDialog() {
-  //   let dialogRef = this.dialog.open(RequestComponent, {
-  //     autoFocus: false
-  //   });
-  // }
 
   goBack() {
     this.location.back();

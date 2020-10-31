@@ -5,7 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
+    loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule),
+  },
+  {
+    path: 'shelter/:shelterId',
+    loadChildren: () => import('./shelter/shelter.module').then(m => m.ShelterModule)
+  },
+  {
+    path: 'shelter/:shelterId/:animalId',
+    loadChildren: () => import('./animal/animal.module').then(m => m.AnimalModule)
   },
   {
     path: 'admin-panel',

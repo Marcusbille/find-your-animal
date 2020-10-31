@@ -1,0 +1,212 @@
+<section class="shelter">
+    <div class="shelter__container container">
+        <div class="shelter__header">
+            <a class="shelter__back back" [routerLink]="['']">
+                <fa-icon class="back__icon icon" icon="chevron-left"></fa-icon>
+                <span class="back__text">На главную</span>
+            </a>
+            <h2 class="shelter__title">{{shelter.name}}</h2>
+        </div>
+        <div class="shelter__main">
+            <div class="shelter__image">
+                <!-- <img class="shelter__image-img" src="/assets/images/shelter.jpeg" alt=""> -->
+            </div>
+            <div class="shelter__main-info">
+                <span class="shelter__text">Адрес: {{shelter.address}}</span>
+                <span class="shelter__text">Телефон:
+                    <a [href]="'tel:+' + shelter.phone" class="shelter__link">+{{shelter.phone}}</a>
+                </span>
+            </div>
+        </div>
+        <div class="shelter__animal-list list">
+            <div class="list__title-container">
+                <h2 class="list__title">Список питомцев</h2>
+            </div>
+            <div class="list__filters animal-filters">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <span class="animal-filters__title">Фильтры</span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="animal-filters__list" *ngIf="filtersIsLoaded == true">
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <p class="filter__name">Вид животного</p>
+                                    <ul class="filter__options">
+                                        <li class="filter__option" *ngFor="let option of filters[0].options">
+                                            <mat-checkbox color="warn" #speciesCheckbox
+                                                (change)="changeFilter($event, 'species', option)"
+                                                [disabled]="checkDisabled('species', option, animals | petFilters : activeFilters, speciesCheckbox)">
+                                                {{option}}
+                                            </mat-checkbox>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Порода</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option">
+                                                <mat-checkbox color="warn" #breedCheckbox
+                                                    (change)="changeFilter($event, 'breed', 'mestizo')"
+                                                    [disabled]="checkDisabled('breed', 'mestizo', animals | petFilters : activeFilters, breedCheckbox)">
+                                                    Метис
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Возраст</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[8].options">
+                                                <mat-checkbox color="warn" #ageCheckbox
+                                                    (change)="changeFilter($event, 'age', option)"
+                                                    [disabled]="checkDisabled('age', option, animals | petFilters : activeFilters, ageCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Пол</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[2].options">
+                                                <mat-checkbox color="warn" #genderCheckbox
+                                                    (change)="changeFilter($event, 'gender', option)"
+                                                    [disabled]="checkDisabled('gender', option, animals | petFilters : activeFilters, genderCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Ветпаспорт</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[3].options">
+                                                <mat-checkbox color="warn" #passportCheckbox
+                                                    (change)="changeFilter($event, 'passport', option)"
+                                                    [disabled]="checkDisabled('passport', option, animals | petFilters : activeFilters, passportCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Стерилизован</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[4].options">
+                                                <mat-checkbox color="warn" #sterilisedCheckbox
+                                                    (change)="changeFilter($event, 'sterilised', option)"
+                                                    [disabled]="checkDisabled('sterilised', option, animals | petFilters : activeFilters, sterilisedCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Цвет шерсти</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[5].options">
+                                                <mat-checkbox color="warn" #hairColorCheckbox
+                                                    (change)="changeFilter($event, 'hair_color', option)"
+                                                    [disabled]="checkDisabled('hair_color', option, animals | petFilters : activeFilters, hairColorCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Тип шерсти</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[6].options">
+                                                <mat-checkbox color="warn" #hairTypeCheckbox
+                                                    (change)="changeFilter($event, 'hair_type', option)"
+                                                    [disabled]="checkDisabled('hair_type', option, animals | petFilters : activeFilters, hairTypeCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animal-filters__filter-container">
+                                <div class="animal-filters__filter filter">
+                                    <div class="filter__container">
+                                        <p class="filter__name">Размер</p>
+                                        <ul class="filter__options">
+                                            <li class="filter__option" *ngFor="let option of filters[7].options">
+                                                <mat-checkbox color="warn" #sizeCheckbox
+                                                    (change)="changeFilter($event, 'size', option)"
+                                                    [disabled]="checkDisabled('size', option, animals | petFilters : activeFilters, sizeCheckbox)">
+                                                    {{option}}
+                                                </mat-checkbox>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+            <div class="list__items" #petList *ngIf="animals">
+                <ng-container *ngIf="(animals | petFilters : activeFilters).length > 0; else elseTemplate">
+                    <div class="list__item"
+                        *ngFor="let pet of animals | petFilters : activeFilters | paginate: { itemsPerPage: 16, currentPage: curPage }">
+                        <a class="list__card card" [routerLink]="['/shelter', pet.shelter_id, pet.id]">
+                            <div class="card__header">
+                                <span class="card__title">{{pet.name}}</span>
+                            </div>
+                            <div class="card__image">
+                                <img class="card__image-img" [src]="pet.Pets_images[0].image_src"
+                                    alt="Фотография животного">
+                            </div>
+                            <div class="card__info info">
+                                <p class="info__text">Вид: {{pet.species}}</p>
+                                <p class="info__text">Порода: {{pet.breed}}</p>
+                                <p class="info__text">Пол: {{pet.gender}}</p>
+                                <p class="info__text">Возраст: {{pet.age}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <span class="list__no-item">По вашему запросу ничего не найдено.</span>
+                </ng-template>
+            </div>
+        </div>
+        <div class="shelter__page-controls">
+            <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)"
+                previousLabel="Предыдущая" nextLabel="Следующая" autoHide="true" maxSize="8">
+            </pagination-controls>
+        </div>
+    </div>
+</section>
