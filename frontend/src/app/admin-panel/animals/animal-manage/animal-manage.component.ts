@@ -409,8 +409,11 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
             this.animalService.postPetResponsible(responsible, pet_id).subscribe(res => {
               console.log(res);
               this.animalService.postPetHealth(this.petHealth.value, pet_id).subscribe(res => {
+                console.log(res);
                 this.animalService.postPetSanitation(this.petSanitation.value, pet_id).subscribe(res => {
+                  console.log(res);
                   this.animalService.postPetVactination(this.petVaccination.value, pet_id).subscribe(res => {
+                    console.log(res);
                     console.log('Успех!');
                   })
                 })

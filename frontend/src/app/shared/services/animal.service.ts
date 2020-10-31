@@ -40,7 +40,7 @@ export class AnimalService {
     return this.http.post(`${this.apiUrl}/api/pets/main`, data)
   }
 
-  postPetAdditional(data, id) {
+  postPetAdditional(data, id: number) {
     return this.http.post(`${this.apiUrl}/api/pets/additional/${id}`, data)
   }
 

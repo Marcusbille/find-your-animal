@@ -164,13 +164,13 @@ exports.deletePet = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot delete pet with id=${id}. Maybe pet was not found!`
+                    message: `Cannot delete pet!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete pet with id=" + id
+                message: "Could not delete pet"
             });
         });
 }
@@ -406,13 +406,13 @@ exports.updatePet_main = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_main with pet_id=${id}`
+                    message: `Cannot update Pet_main`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_main with pet_id=" + id
+                message: "Error updating Pet_main"
             });
         });
 }
@@ -429,13 +429,13 @@ exports.updatePet_additional = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_additional with pet_id=${id}`
+                    message: `Cannot update Pet_additional`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_additional with pet_id=" + id
+                message: "Error updating Pet_additional"
             });
         });
 }
@@ -452,13 +452,13 @@ exports.updatePet_catch_info = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_catch_info with pet_id=${id}`
+                    message: `Cannot update Pet_catch_info`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_catch_info with pet_id=" + id
+                message: "Error updating Pet_catch_info"
             });
         });
 }
@@ -475,13 +475,13 @@ exports.updatePet_move = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_move with pet_id=${id}`
+                    message: `Cannot update Pet_move`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_move with pet_id=" + id
+                message: "Error updating Pet_move"
             });
         });
 }
@@ -498,13 +498,13 @@ exports.updatePet_responsible = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_responsible with pet_id=${id}`
+                    message: `Cannot update Pet_responsible`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_responsible with pet_id=" + id
+                message: "Error updating Pet_responsible"
             });
         });
 }
@@ -526,7 +526,7 @@ exports.createPet_owner = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_owners with pet_id=" + id
+                message: "Error updating Pet_owners"
             });
         });
 }
@@ -543,13 +543,13 @@ exports.updatePet_owner = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot update Pet_owner with pet_id=${id}`
+                    message: `Cannot update Pet_owner`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Pet_owner with pet_id=" + id
+                message: "Error updating Pet_owner"
             });
         });
 }
