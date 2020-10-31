@@ -23,120 +23,105 @@
                 <div class="info__content content">
                     <div class="content__header">
                         <div class="content__column">
-                            <p class="animal__text">Собака</p>
-                            <p class="animal__text">Пол</p>
-                            <p class="animal__text">Окрас</p>
-                            <p class="animal__text">Уши</p>
-                            <p class="animal__text">Размер</p>
-                            <p class="animal__characteristic-special">Особые приметы</p>
+                            <p class="animal__text">Вид: {{animal.species}}</p>
+                            <p class="animal__text">Пол: {{animal.gender}}</p>
+                            <p class="animal__text">Окрас: {{animal.hair_color}}</p>
+                            <p class="animal__text">Уши: {{animal.ears_type}}</p>
+                            <p class="animal__text">Размер: {{animal.size}}</p>
+                            <p class="animal__characteristic-special">Особые приметы: {{animal.special}}</p>
                         </div>
                         <div class="content__column"></div>
-                        <p class="animal__text">Возраст</p>
-                        <p class="animal__text">Вес</p>
-                        <p class="animal__text">Кличка</p>
-                        <p class="animal__text">Порода</p>
-                        <p class="animal__text">Шерсть</p>
-                        <p class="animal__text">Хвост</p>
+                        <p class="animal__text">Возраст: {{animal.age}}</p>
+                        <p class="animal__text">Вес: {{animal.weight}}</p>
+                        <p class="animal__text">Кличка: {{animal.name}}</p>
+                        <p class="animal__text">Порода: {{animal.breed}} </p>
+                        <p class="animal__text">Шерсть: {{animal.hair_type}}</p>
+                        <p class="animal__text">Хвост: {{animal.tail_type}}</p>
                     </div>
-                    <p class="animal__text">Характер</p>
+                    <p class="animal__text">Характер: --</p>
                 </div>
             </div>
-            <p class="animal__text">Идентификационная метка</p>
-            <p class="animal__text">Дата стерилизации </p>
-            <p class="animal__text">Место стерилизации </p>
-            <p class="animal__text">Ф.И.О. ветеринарного врача </p>
-            <p class="animal__text">Социализировано/готово к пристройству</p>
+            <p class="animal__text">Идентификационная метка: {{animal.Pets_additional.id_tag}}</p>
+            <p class="animal__text">Дата стерилизации: {{animal.Pets_additional.ster_date}} </p>
+            <p class="animal__text">Место стерилизации: --</p>
+            <p class="animal__text">Ф.И.О. ветеринарного врача: {{animal.Pets_additional.doctor}} </p>
+            <p class="animal__text">Социализировано/готово к пристройству: {{animal.Pets_additional.socialised}}</p>
         </div>
         <h3 class="animal__subtitle">Сведение об отлове</h3>
-        <p class="animal__text">Заказ-наряд № "что-то" от "дата"</p>
-        <p class="animal__text">Акт-отлова № "что-то" от "дата"</p>
-        <p class="animal__text">Адрес места отлова </p>
-        <p class="animal__text">Видеофиксация отлова</p>
-        <p class="animal__text">Юридическое лицо</p>
-        <p class="animal__text">адрес</p>
-        <p class="animal__text">телефон</p>
-        <p class="animal__text">Ф.И.О. опекунов: </p>
-        <p class="animal__text">контактные данные: </p>
-        <p class="animal__text">Физическое лицо (Ф.И.О.):</p>
-        <p class="animal__text">паспорт РФ серии</p>
-        <p class="animal__text">номер</p>
-        <p class="animal__text">выдан "теми теми теми" года</p>
-        <p class="animal__text">зарегистрированный (ая) по адресу: </p>
-        <p class="animal__text">контактные данные: </p>
+        <p class="animal__text">Заказ-наряд №{{animal.Pets_catch_info.catch_report}} от --</p>
+        <p class="animal__text">Акт-отлова №{{animal.Pets_catch_info.order_num}} от --</p>
+        <p class="animal__text">Адрес места отлова: {{animal.Pets_catch_info.catch_address}} </p>
+        <p class="animal__text">Видеофиксация отлова: --</p>
+        <p class="animal__text">Юридическое лицо: --</p>
+        <p class="animal__text">адрес: --</p>
+        <p class="animal__text">телефон: --</p>
+        <p class="animal__text">Ф.И.О. опекунов: --</p>
+        <p class="animal__text">контактные данные: --</p>
+        <p class="animal__text">Физическое лицо (Ф.И.О.): --</p>
+        <p class="animal__text">паспорт РФ серии: --</p>
+        <p class="animal__text">номер: --</p>
+        <p class="animal__text">выдан -- года,</p>
+        <p class="animal__text">зарегистрированный (ая) по адресу: --</p>
+        <p class="animal__text">контактные данные: --</p>
         <h2 class="animal__subtitle">Движение животного</h2>
-        <p class="animal__text">Дата поступления в приют: ,</p>
-        <p class="animal__text">Акт № </p>
-        <p class="animal__text">Дата выбытия из приюта: ,</p>
-        <p class="animal__text">Акт № </p>
-        <p class="animal__text">Причина выбытия из приюта: </p>
+        <p class="animal__text">Дата поступления в приют: {{animal.Pets_move.date_in}}</p>
+        <p class="animal__text">Акт №{{animal.Pets_move.act}} </p>
+        <p class="animal__text">Дата выбытия из приюта: {{animal.Pets_move.date_out}}</p>
+        <p class="animal__text">Акт №{{animal.Pets_move.order}}</p>
+        <p class="animal__text">Причина выбытия из приюта: {{animal.Pets_move.reason}}</p>
+        <h2 class="animal__subtitle">Сведения об обработке от экто- и эндопаразитов</h2>
         <table class="animal__sanitation-table">
             <tr>
                 <th>№ п/п</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Дата</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Препарат</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Доза</th>
-                <td>"будет"</td>
+                <th>Подпись ветеринарного врача и печать</th>
             </tr>
             <tr>
-                <th>Подпись ветеринарного врача и печать</th>
-                <td>"будет"</td>
+                <td *ngFor="let order of animal.Pets_sanitations">{{order.order}}</td>
+                <td *ngFor="let date of animal.Pets_sanitations">{{date.date}}</td>
+                <td *ngFor="let medicine of animal.Pets_sanitations">{{medicine.medicine}}</td>
+                <td *ngFor="let dose of animal.Pets_sanitations">{{dose.dose}}</td>
+                <td>--</td>
             </tr>
         </table>
+        <h2 class="animal__subtitle">Сведения о вакцинации</h2>
         <table class="animal__vaccination-table">
             <tr>
                 <th>№ п/п</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Дата</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Вид вакцины</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>№ серии </th>
-                <td>"будет"</td>
+                <th>Подпись ветеринарного врача и печать</th>
             </tr>
             <tr>
-                <th>Подпись ветеринарного врача и печать</th>
-                <td>"будет"</td>
+                <td *ngFor="let order of animal.Pets_vaccinations">{{order.order}}</td>
+                <td *ngFor="let date of animal.Pets_vaccinations">{{date.date}}</td>
+                <td *ngFor="let vaccine of animal.Pets_vaccinations">{{vaccine.vaccine}}</td>
+                <td *ngFor="let series of animal.Pets_vaccinations">{{series.series}}</td>
+                <td>--</td>
             </tr>
         </table>
+        <h2 class="animal__subtitle">Сведения о состоянии здоровья</h2>
         <table class="animal__health-table">
             <tr>
                 <th>№ п/п</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Дата осмотра</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Вес</th>
-                <td>"будет"</td>
-            </tr>
-            <tr>
                 <th>Анамнез</th>
-                <td>"будет"</td>
+                <th>Подпись ветеринарного врача и печать</th>
             </tr>
             <tr>
-                <th>Подпись ветеринарного врача и печать</th>
-                <td>"будет"</td>
+                <td>{{animal.Pets_health.id}}</td>
+                <td>{{animal.Pets_health.check_date}}</td>
+                <td>--</td>
+                <td>{{animal.Pets_health.anamnesis}}</td>
+                <td>--</td>
             </tr>
         </table>
         <h2 class="animal__subtitle">Ответственные за животное</h2>
-        <p class="animal__text">Ф.И.О. руководителя приюта/подпись: </p>
-        <p class="animal__text">Ф.И.О. сотрудника по уходу за животным/подпись: </p>
+        <p class="animal__text">Ф.И.О. руководителя приюта/подпись: {{animal.Shelter.chief}}</p>
+        <p class="animal__text">Ф.И.О. сотрудника по уходу за животным/подпись: {{animal.Pets_responsible.person}} ??</p>
     </div>
 </section>

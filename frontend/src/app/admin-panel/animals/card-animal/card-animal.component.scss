@@ -24,35 +24,35 @@
     &__text {
         margin-top: 8px;
     }
-    &__main {
-    }
-    &__subtitle {
-    }
-    &__info {
-    }
-    &__characteristic-special {
-    }
-    &__sanitation-table {
-    }
-    &__vaccination-table {
-    }
-    &__health-table {
-    }
+    &__main {}
+    &__subtitle {}
+    &__info {}
+    &__characteristic-special {}
+    &__sanitation-table {}
+    &__vaccination-table {}
+    &__health-table {}
 }
+
 .info {
-    &__image {
-    }
-
-    &__image-img {
-    }
-
-    &__content {
-    }
+    &__image {}
+    &__image-img {}
+    &__content {}
 }
-.content {
-    &__header {
-    }
 
-    &__column {
-    }
+.content {
+    &__header {}
+    &__column {}
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 12px 8px;
 }
