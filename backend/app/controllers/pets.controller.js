@@ -251,7 +251,7 @@ exports.makeSanitation = (req, res) => {
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.create(san)
+        Contact.bulkCreate(san)
             .then(body => {
                 res.status(status).send(body)
             })
@@ -291,7 +291,7 @@ exports.makeVaccination = (req, res) => {
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.create(vac)
+        Contact.bulkCreate(vac)
             .then(body => {
                 res.status(status).send(body)
             })
@@ -326,13 +326,13 @@ exports.getVaccination = (req, res) => {
 }
 
 exports.makeHealth = (req, res) => {
-    const health = req.body;
-    const pet_id = req.params.id;
+    let health = req.body;
+    let pet_id = req.params.id;
 
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.create(health)
+        Contact.bulkCreate(health)
             .then(body => {
                 res.status(status).send(body)
             })
@@ -369,7 +369,7 @@ exports.getHealth = (req, res) => {
 exports.updatePet_main = (req, res) => {
     let pet_id = req.params.id;
     Pet_main.update(req.body, {
-            where: { pet_num: pet_id }
+            where: { id: pet_id }
         })
         .then(num => {
             if (num == 1) {

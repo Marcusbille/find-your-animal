@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Destroyer } from 'src/app/shared/destroyer';
 import { AnimalService } from 'src/app/shared/services/animal.service';
@@ -43,7 +43,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
   vaccinationOrders = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private animalService: AnimalService,
-    private dictionaryService: DictionaryService, private shelterService: ShelterService) {
+    private dictionaryService: DictionaryService, private shelterService: ShelterService, private router: Router) {
     super();
     this.createPetMain();
     this.createPetAdditional();
@@ -421,7 +421,47 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
       })
     })
 
+    this.router.navigate(["admin-panel/animals"]);
+  }
 
+  updatePet() {
+    let main = this.petMain.value;
+    main.shelter_id = this.petResponsible.get('shelter').value;
+    let additional = this.petAdditional.value;
+    let catch_info = this.petCatchInfo.value;
+    let move = this.petMove.value;
+    let responsible = this.petResponsible.value;
+
+    this.animalService.updatePetMain(main, this.curId).subscribe(data => {
+      console.log(data);
+      this.animalService.updatePetAdditional(additional, this.curId).subscribe(res => {
+        console.log(res);
+        this.animalService.updatePetCatchInfo(catch_info, this.curId).subscribe(res => {
+          console.log(res);
+          this.animalService.updatePetMove(move, this.curId).subscribe(res => {
+            console.log(res);
+            this.animalService.updatePetResponsible(responsible, this.curId).subscribe(res => {
+              console.log(res);
+              this.animalService.postPetHealth(this.petHealth.value, this.curId).subscribe(res => {
+                this.animalService.postPetSanitation(this.petSanitation.value, this.curId).subscribe(res => {
+                  this.animalService.postPetVactination(this.petVaccination.value, this.curId).subscribe(res => {
+                    console.log('Успех!');
+                  })
+                })
+              })
+            })
+          })
+        })
+      })
+    })
+
+    this.router.navigate(["admin-panel/animals"]);
+  }
+
+  formValid() {
+    if (this.petMain.valid && this.petAdditional.valid && this.petCatchInfo.valid && this.petMove.valid && this.petResponsible.valid)
+      return true;
   }
 
 }
+

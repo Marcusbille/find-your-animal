@@ -327,11 +327,11 @@
         </div>
     </form>
     <ng-container *ngIf="curId; else elseTemplate">
-        <button class="animal__btn btn" mat-flat-button color="accent"><span class="btn__text">Сохранить
+        <button class="animal__btn btn" mat-flat-button color="accent" [disabled]="!formValid()" (click)="updatePet()"><span class="btn__text">Сохранить
                 изменения</span></button>
     </ng-container>
     <ng-template #elseTemplate>
-        <button class="animal__btn btn" mat-flat-button color="primary" (click)="createPet()"><span
+        <button class="animal__btn btn" mat-flat-button color="primary" [disabled]="!formValid()" (click)="createPet()"><span
                 class="btn__text">Добавить
                 животное</span></button>
     </ng-template>
