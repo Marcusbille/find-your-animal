@@ -88,29 +88,34 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
           this.refreshDictionary('собака');
         else
           this.refreshDictionary('кошка');
-        this.initPetHealth();
-        this.initPetSanitation();
-        this.initPetVaccination();
-        // this.animalService.getPetHealth(this.curId).subscribe(data => {
-        //   if (data)
-        //     this.patchPetHealth(data);
-        // });
-        // this.animalService.getPetOwner(this.curId).subscribe(data => {
-        //   if (data)
-        //     this.patchPetOwners(data);
-        // });
-        // this.animalService.getPetSanitation(this.curId).subscribe(data => {
-        //   if (data)
-        //     this.patchPetSanitation(data);
-        // });
-        // this.animalService.getPetVaccination(this.curId).subscribe(data => {
-        //   if (data)
-        //     this.patchPetVaccination(data);
-        // });
-      } else
+
+        this.animalService.getPetHealth(this.curId).subscribe(data => {
+          if (data) {
+            this.healthOrders = data;
+            this.initPetHealth();
+          }
+        });
+        this.animalService.getPetOwner(this.curId).subscribe(data => {
+          if (data)
+            this.patchPetOwners(data);
+        });
+        this.animalService.getPetSanitation(this.curId).subscribe(data => {
+          if (data) {
+            this.sanitationOrders = data;
+            this.initPetSanitation();
+          }
+        });
+        this.animalService.getPetVaccination(this.curId).subscribe(data => {
+          if (data) {
+            this.vaccinationOrders = data;
+            this.initPetVaccination();
+          }
+        });
+      } else {
         this.addHealthOrder();
-      this.addPetSanitation();
-      this.addPetVaccination();
+        this.addPetSanitation();
+        this.addPetVaccination();
+      }
     });
   }
 
@@ -361,7 +366,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
 
   patchPetResponsible() {
     this.petResponsible.patchValue({
-      // shelter: this.animal.shelter_id,
+      shelter: this.animal.shelter_id,
       person: this.animal.Pets_responsible.person,
     });
   }
@@ -392,17 +397,24 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
     let move = this.petMove.value;
     let responsible = this.petResponsible.value;
 
-    this.animalService.postPet_main(main).subscribe(data => {
+    this.animalService.postPetMain(main).subscribe(data => {
       console.log(data);
       let pet_id = data['id'];
-      this.animalService.postPet_additional(additional, pet_id).subscribe(res => {
+      this.animalService.postPetAdditional(additional, pet_id).subscribe(res => {
         console.log(res);
-        this.animalService.postPet_catch_info(catch_info, pet_id).subscribe(res => {
+        this.animalService.postPetCatchInfo(catch_info, pet_id).subscribe(res => {
           console.log(res);
-          this.animalService.postPet_move(move, pet_id).subscribe(res => {
+          this.animalService.postPetMove(move, pet_id).subscribe(res => {
             console.log(res);
-            this.animalService.postPet_responsible(responsible, pet_id).subscribe(res => {
+            this.animalService.postPetResponsible(responsible, pet_id).subscribe(res => {
               console.log(res);
+              this.animalService.postPetHealth(this.petHealth.value, pet_id).subscribe(res => {
+                this.animalService.postPetSanitation(this.petSanitation.value, pet_id).subscribe(res => {
+                  this.animalService.postPetVactination(this.petVaccination.value, pet_id).subscribe(res => {
+                    console.log('Успех!');
+                  })
+                })
+              })
             })
           })
         })

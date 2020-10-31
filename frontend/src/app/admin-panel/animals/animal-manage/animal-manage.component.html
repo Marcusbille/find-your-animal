@@ -169,8 +169,7 @@
     <form class="animal__form form" [formGroup]="petHealth">
         <h3 class="form__title">Сведения о состоянии здоровья</h3>
         <div class="form__orders">
-            <div class="form__field-group" formArrayName="healthOrders"
-                *ngFor="let order of petHealth.get('healthOrders')['controls']; let i = index">
+            <div class="form__field-group" formArrayName="healthOrders" *ngFor="let order of petHealth.get('healthOrders')['controls']; let i = index">
                 <ng-container [formGroupName]="i">
                     <mat-form-field class="form__field">
                         <mat-label>Дата осмотра</mat-label>
@@ -264,8 +263,7 @@
     <form class="animal__form form" [formGroup]="petSanitation">
         <h3 class="form__title">Сведения об обработке от экто- и эндопаразитов</h3>
         <div class="form__orders">
-            <div class="form__field-squad" formArrayName="sanitationOrders"
-                *ngFor="let order of petSanitation.get('sanitationOrders')['controls']; let i = index">
+            <div class="form__field-squad" formArrayName="sanitationOrders" *ngFor="let order of petSanitation.get('sanitationOrders')['controls']; let i = index">
                 <ng-container [formGroupName]="i">
                     <mat-form-field class="form__field">
                         <mat-label>№ записи</mat-label>
@@ -284,7 +282,7 @@
                         <input class="form__item" formControlName="dose" matInput>
                     </mat-form-field>
                 </ng-container>
-                <button class="form__fields-btn btn" (click)="deletePetSanitation(i)">
+                <button class="form__fields-btn btn order-delete" (click)="deletePetSanitation(i)">
                     <fa-icon class="form__fields-icon form__fields-icon_red" icon="window-close"></fa-icon>
                     <span class="animal__delete-order">Удалить запись</span>
                 </button>
@@ -298,8 +296,7 @@
     <form class="animal__form form" [formGroup]="petVaccination">
         <h3 class="form__title">Сведения о вакцинации</h3>
         <div class="form__orders">
-            <div class="form__field-squad" formArrayName="sanitationOrders"
-                *ngFor="let order of petSanitation.get('sanitationOrders')['controls']; let i = index">
+            <div class="form__field-squad" formArrayName="vaccinationOrders" *ngFor="let order of petVaccination.get('vaccinationOrders')['controls']; let i = index">
                 <ng-container [formGroupName]="i">
                     <mat-form-field class="form__field">
                         <mat-label>№ записи</mat-label>
@@ -311,14 +308,14 @@
                     </mat-form-field>
                     <mat-form-field class="form__field">
                         <mat-label>Вид вакцины</mat-label>
-                        <input class="form__item" formControlName="medicine" matInput>
+                        <input class="form__item" formControlName="vaccine" matInput>
                     </mat-form-field>
                     <mat-form-field class="form__field">
                         <mat-label>Серия</mat-label>
-                        <input class="form__item" formControlName="dose" matInput>
+                        <input class="form__item" formControlName="series" matInput>
                     </mat-form-field>
                 </ng-container>
-                <button class="form__fields-btn btn" (click)="deletePetSanitation(i)">
+                <button class="form__fields-btn btn order-delete" (click)="deletePetSanitation(i)">
                     <fa-icon class="form__fields-icon form__fields-icon_red" icon="window-close"></fa-icon>
                     <span class="animal__delete-order">Удалить запись</span>
                 </button>

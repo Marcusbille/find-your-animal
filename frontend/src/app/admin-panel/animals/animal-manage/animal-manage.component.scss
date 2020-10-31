@@ -5,10 +5,8 @@
         width: 50%;
         margin: 0 auto;
     }
-    &__add-order {
-    }
-    &__btn {
-    }
+    &__add-order {}
+    &__btn {}
     &__delete-order {
         font-size: 20px;
         font-weight: 300;
@@ -31,4 +29,8 @@
         font-size: 28px;
         color: $mainBlueColor;
     }
+}
+
+.order-delete {
+    margin-bottom: 12px;
 }

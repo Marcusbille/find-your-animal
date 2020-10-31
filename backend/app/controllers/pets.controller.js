@@ -245,8 +245,8 @@ exports.createPet_move = (req, res) => {
 }
 
 exports.makeSanitation = (req, res) => {
-    const san = req.body.sanitation;
-    const pet_id = req.params.id;
+    let san = req.body;
+    let pet_id = req.params.id;
 
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
@@ -264,7 +264,7 @@ exports.makeSanitation = (req, res) => {
 
 };
 
-exports.getSanitation = (res, req) => {
+exports.getSanitation = (req, res) => {
     let pet_id = req.params.id;
     Pet_sanitation.findAll({
             where: {
@@ -285,9 +285,8 @@ exports.getSanitation = (res, req) => {
 }
 
 exports.makeVaccination = (req, res) => {
-    const vac = req.body.vaccination;
-    const pet_id = req.params.id;
-
+    let vac = req.body;
+    let pet_id = req.params.id;
 
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
@@ -306,7 +305,7 @@ exports.makeVaccination = (req, res) => {
 
 };
 
-exports.getVaccination = (res, req) => {
+exports.getVaccination = (req, res) => {
     let pet_id = req.params.id;
     Pet_vaccination.findAll({
             where: {
@@ -327,7 +326,7 @@ exports.getVaccination = (res, req) => {
 }
 
 exports.makeHealth = (req, res) => {
-    const health = req.body.health;
+    const health = req.body;
     const pet_id = req.params.id;
 
     Pet_sanitation.destroy({
@@ -339,7 +338,7 @@ exports.makeHealth = (req, res) => {
             })
             .catch(err => {
                 res.status(500).send({
-                    message: err.message || "Some error occurred while creating the vaccination."
+                    message: err.message
                 });
             });
     })
@@ -347,7 +346,7 @@ exports.makeHealth = (req, res) => {
 
 };
 
-exports.getHealth = (res, req) => {
+exports.getHealth = (req, res) => {
     let pet_id = req.params.id;
     Pet_health.findAll({
             where: {
@@ -527,7 +526,7 @@ exports.updatePet_owner = (req, res) => {
         });
 }
 
-exports.getPet_owner = (res, req) => {
+exports.getPet_owner = (req, res) => {
     let pet_id = req.params.id;
     Pet_owners.findAll({
             where: {

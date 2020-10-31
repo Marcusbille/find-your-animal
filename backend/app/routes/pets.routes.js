@@ -9,19 +9,18 @@ module.exports = app => {
     router.post('/move/:id', pets.createPet_move);
     router.post('/responsible/:id', pets.createPet_responsible);
 
-    router.post('/vac', pets.makeVaccination);
-    router.post('/san', pets.makeSanitation);
-    router.post('/health', pets.makeHealth);
+    router.post('/vactination/:id', pets.makeVaccination);
+    router.post('/sanitation/:id', pets.makeSanitation);
+    router.post('/health/:id', pets.makeHealth);
+
+    router.get("/health/:id", pets.getHealth);
+    router.get("/vaccination/:id", pets.getVaccination);
+    router.get("/sanitation/:id", pets.getSanitation);
+
 
     router.get("/", pets.getAllPets);
 
     router.get("/:id", pets.getOnePet);
-
-    router.get("/health/:id", pets.getHealth);
-
-    router.get("/vaccination/:id", pets.getVaccination);
-
-    router.get("/sanitation/:id", pets.getSanitation);
 
     router.get("/owner/:id", pets.getPet_owner);
 
