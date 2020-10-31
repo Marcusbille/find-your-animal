@@ -25,6 +25,7 @@ db.sequelize.sync();
 
 require("./app/routes/pets.routes")(app);
 require("./app/routes/dictionary.routes")(app);
+require("./app/routes/shelters.routes")(app);
 
 
 

@@ -7,5 +7,14 @@ module.exports = app => {
 
     router.get("/:id", pets.getOnePet);
 
+    router.get("/health/:id", pets.getHealth);
+
+    router.get("/vaccination/:id", pets.getVaccination);
+
+    router.get("/sanitation/:id", pets.getSanitation);
+
+    router.get("/owner/:id", pets.getPet_owner);
+
+
     app.use('/api/pets', router);
 };

@@ -112,18 +112,6 @@ exports.getOnePet = (req, res) => {
         {
             model: Shelter
         },
-        {
-            model: Pet_health
-        },
-        {
-            model: Pet_sanitation
-        },
-        {
-            model: Pet_vaccination
-        },
-        {
-            model: Pet_owners
-        }
         ]
     })
         .then(data => {
@@ -526,6 +514,23 @@ exports.updatePet_owner = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Error updating Pet_owner with pet_id=" + id
+            });
+        });
+}
+
+exports.getPet_owner = (res, req) => {
+    let pet_id = req.params.id;
+    Pet_owners.findAll({
+        where: {
+            pet_num: pet_id
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message
             });
         });
 }
