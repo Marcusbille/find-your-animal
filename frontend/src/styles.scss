@@ -82,6 +82,7 @@ ul {
 
 .table {
     width: 100% !important;
+    margin-top: 10px;
     &__td {
         padding-left: 5px !important;
         padding-right: 5px !important;
@@ -116,6 +117,11 @@ ul {
 
 .admin-panel {
     &__controls {
+        padding: 0 10px;
+    }
+}
+.controls {
+    &__group {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -133,5 +139,7 @@ ul {
     }
     &__search-field {
         width: 100%;
+    }
+    &__filters {
     }
 }
