@@ -1,360 +1,408 @@
-<div class="pet">
-    <form class="pet__form form" [formGroup]="petMain" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Карточка учета животного №</mat-label>
-            <input class="form__field" formControlName="card_num" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Вид</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="species" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Возраст, год</mat-label>
-            <input class="form__field" matInput required formControlName="age">
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Вес, кг</mat-label>
-            <input class="form__field" matInput formControlName="weight" required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Кличка</mat-label>
-            <input class="form__field" matInput formControlName="name" required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Пол</mat-label>
-            <mat-select required formControlName="gender">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let pasport of pasport" [value]="pasport">
-                    {{pasport}}
-                </mat-option> -->
-                <mat-option>Something5</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Порода</mat-label>
-            <mat-select required formControlName="breed">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let sterilised of sterilised" [value]="sterilised">
-                    {{sterilised}}
-                </mat-option> -->
-                <mat-option>Something6</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Окрас</mat-label>
-            <mat-select required formControlName="hair_color">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let size of sizes" [value]="size">
-                    {{size}}
-                </mat-option> -->
-                <mat-option>Something7</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Шерсть</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto3" formControlName="hair_type">
-            <mat-autocomplete #auto3="matAutocomplete">
-                <!-- <mat-option *ngFor="let eye_color of eye_colors" [value]="eye_color">
-                    {{eye_color}}
-                </mat-option> -->
-                <mat-option>Something8</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Уши</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto4" required formControlName="ears_type">
-            <mat-autocomplete #auto4="matAutocomplete">
-                <!-- <mat-option *ngFor="let hair_color of hair_colors" [value]="hair_color">
-                    {{hair_color}}
-                </mat-option> -->
-                <mat-option>Something9</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Хвост</mat-label>
-            <mat-select required formControlName="tail_type">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let hair_type of hair_types" [value]="hair_type">
-                    {{hair_type}}
-                </mat-option> -->
-                <mat-option>Something10</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Размер</mat-label>
-            <input class="form__item" formControlName="size" matInput>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Особые приметы</mat-label>
-            <mat-select required formControlName="special">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let disability of disability" [value]="disability">
-                    {{disability}}
-                </mat-option> -->
-                <mat-option>Something11</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Вольер №</mat-label>
-            <mat-select required formControlName="enclosure">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
-                    {{shelter.name}}
-                </mat-option> -->
-                <mat-option>Something12</mat-option>
-            </mat-select>
-        </mat-form-field>
+<div class="animal">
+    <form class="animal__form form" [formGroup]="petMain">
+        <h3 class="form__title">Общие сведения</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Карточка учета животного №</mat-label>
+                <input class="form__field" formControlName="card_num" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Вид</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="species" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Возраст, год</mat-label>
+                <input class="form__field" matInput required formControlName="age">
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Вес, кг</mat-label>
+                <input class="form__field" matInput formControlName="weight" required>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Кличка</mat-label>
+                <input class="form__field" matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Пол</mat-label>
+                <mat-select required formControlName="gender">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let pasport of pasport" [value]="pasport">
+                        {{pasport}}
+                    </mat-option> -->
+                    <mat-option>Something5</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Порода</mat-label>
+                <mat-select required formControlName="breed">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let sterilised of sterilised" [value]="sterilised">
+                        {{sterilised}}
+                    </mat-option> -->
+                    <mat-option>Something6</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Окрас</mat-label>
+                <mat-select required formControlName="hair_color">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let size of sizes" [value]="size">
+                        {{size}}
+                    </mat-option> -->
+                    <mat-option>Something7</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Шерсть</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto3" formControlName="hair_type">
+                <mat-autocomplete #auto3="matAutocomplete">
+                    <!-- <mat-option *ngFor="let eye_color of eye_colors" [value]="eye_color">
+                        {{eye_color}}
+                    </mat-option> -->
+                    <mat-option>Something8</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Уши</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto4" required formControlName="ears_type">
+                <mat-autocomplete #auto4="matAutocomplete">
+                    <!-- <mat-option *ngFor="let hair_color of hair_colors" [value]="hair_color">
+                        {{hair_color}}
+                    </mat-option> -->
+                    <mat-option>Something9</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Хвост</mat-label>
+                <mat-select required formControlName="tail_type">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let hair_type of hair_types" [value]="hair_type">
+                        {{hair_type}}
+                    </mat-option> -->
+                    <mat-option>Something10</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Размер</mat-label>
+                <input class="form__item" formControlName="size" matInput>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Особые приметы</mat-label>
+                <mat-select required formControlName="special">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let disability of disability" [value]="disability">
+                        {{disability}}
+                    </mat-option> -->
+                    <mat-option>Something11</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Вольер №</mat-label>
+                <mat-select required formControlName="enclosure">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
+                        {{shelter.name}}
+                    </mat-option> -->
+                    <mat-option>Something12</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petAdditional" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Идентификационная метка</mat-label>
-            <input class="form__field" formControlName="id_tag" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Дата стерилизации</mat-label>
-            <input class="form__field" matInput formControlName="ster_date" required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Ф.И.О. ветеринарного врача</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto2" required formControlName="doctor">
-            <mat-autocomplete #auto2="matAutocomplete">
-                <!-- <mat-option *ngFor="let breed of breeds" [value]="breed">
-                    {{breed}}
-                </mat-option> -->
-                <mat-option>Something2</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Социализировано (да/нет)</mat-label>
-            <mat-select required formControlName="socialised">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let age of ages" [value]="age">
-                    {{age}}
-                </mat-option> -->
-                <mat-option>Something3</mat-option>
-            </mat-select>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petAdditional">
+        <h3 class="form__title">Дополнительные сведения</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Идентификационная метка</mat-label>
+                <input class="form__field" formControlName="id_tag" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Дата стерилизации</mat-label>
+                <input class="form__field" matInput formControlName="ster_date" required>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Ф.И.О. ветеринарного врача</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto2" required formControlName="doctor">
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <!-- <mat-option *ngFor="let breed of breeds" [value]="breed">
+                        {{breed}}
+                    </mat-option> -->
+                    <mat-option>Something2</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Социализировано (да/нет)</mat-label>
+                <mat-select required formControlName="socialised">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let age of ages" [value]="age">
+                        {{age}}
+                    </mat-option> -->
+                    <mat-option>Something3</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petCatchInfo" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Заказ-наряд / акт о поступлении животного №</mat-label>
-            <input class="form__field" formControlName="order_num" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Заказ-наряд дата/ акт о поступлении животного, дата</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="order_data" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Административный округ</mat-label>
-            <mat-select required formControlName="district">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let age of ages" [value]="age">
-                    {{age}}
-                </mat-option> -->
-                <mat-option>Something3</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Акт отлова №</mat-label>
-            <mat-select required formControlName="catch_report">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let age of ages" [value]="age">
-                    {{age}}
-                </mat-option> -->
-                <mat-option>Something3</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Адрес места отлова</mat-label>
-            <mat-select required formControlName="catch_address">
-                <mat-option>--</mat-option>
-                <!-- <mat-option *ngFor="let age of ages" [value]="age">
-                    {{age}}
-                </mat-option> -->
-                <mat-option>Something3</mat-option>
-            </mat-select>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petCatchInfo">
+        <h3 class="form__title">Сведения об отлове</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Заказ-наряд / акт о поступлении животного №</mat-label>
+                <input class="form__field" formControlName="order_num" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Заказ-наряд дата/ акт о поступлении животного, дата</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="order_data" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Административный округ</mat-label>
+                <mat-select required formControlName="district">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let age of ages" [value]="age">
+                        {{age}}
+                    </mat-option> -->
+                    <mat-option>Something3</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Акт отлова №</mat-label>
+                <mat-select required formControlName="catch_report">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let age of ages" [value]="age">
+                        {{age}}
+                    </mat-option> -->
+                    <mat-option>Something3</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Адрес места отлова</mat-label>
+                <mat-select required formControlName="catch_address">
+                    <mat-option>--</mat-option>
+                    <!-- <mat-option *ngFor="let age of ages" [value]="age">
+                        {{age}}
+                    </mat-option> -->
+                    <mat-option>Something3</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </form>
-    <form class="pet__form form" [formGroup]="petHealth" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Дата осмотра</mat-label>
-            <input class="form__field" formControlName="check_date" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Анамнез</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="anamnesis" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petHealth">
+        <h3 class="form__title">Сведения о состоянии здоровья</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Дата осмотра</mat-label>
+                <input class="form__field" formControlName="check_date" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Анамнез</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="anamnesis" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
-
     <!-- ТУТ ФОРМА С ФОТО -->
-
-    <form class="pet__form form" [formGroup]="petMove" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Дата поступления в приют</mat-label>
-            <input class="form__field" formControlName="date_in" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Акт №</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="act" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Дата выбытия из приюта</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="date_out" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Причина выбытия</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="reason" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Акт/договор №</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="order" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petMove">
+        <h3 class="form__title">Движение животного</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Дата поступления в приют</mat-label>
+                <input class="form__field" formControlName="date_in" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Акт №</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="act" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Дата выбытия из приюта</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="date_out" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Причина выбытия</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="reason" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Акт/договор №</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="order" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petOwners" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Юридическое лицо</mat-label>
-            <input class="form__field" formControlName="legal_entity" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Ф.И.О. опекунов</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="guardian" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Физическое лицо Ф.И.О.</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="individual" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petOwners">
+        <h3 class="form__title">Сведения о новых владельцах</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Юридическое лицо</mat-label>
+                <input class="form__field" formControlName="legal_entity" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Ф.И.О. опекунов</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="guardian" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Физическое лицо Ф.И.О.</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="individual" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petResponsible" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>Ф.И.О. сотрудника по уходу за животным</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="person" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petResponsible">
+        <h3 class="form__title">Ответственные за животное</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Ф.И.О. сотрудника по уходу за животным</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="person" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petSanitation" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>№ п/п</mat-label>
-            <input class="form__field" formControlName="order" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Дата</mat-label>
-            <input class="form__field" matInput formControlName="date" required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Название препарата</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="medicine" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Доза</mat-label>
-            <input class="form__field" matInput formControlName="dose" required>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petSanitation">
+        <h3 class="form__title">Сведения об обработке от экто- и эндопаразитов</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>№ п/п</mat-label>
+                <input class="form__field" formControlName="order" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Дата</mat-label>
+                <input class="form__field" matInput formControlName="date" required>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Название препарата</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="medicine" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Доза</mat-label>
+                <input class="form__field" matInput formControlName="dose" required>
+            </mat-form-field>
+        </div>
     </form>
-
-    <form class="pet__form form" [formGroup]="petVaccination" enctype="multipart/form-data">
-        <mat-form-field class="form__field">
-            <mat-label>№ п/п</mat-label>
-            <input class="form__field" formControlName="order" matInput required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Дата</mat-label>
-            <input class="form__field" matInput formControlName="date" required>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>Вид вакцины</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="vaccine" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <mat-form-field class="form__field">
-            <mat-label>№ серии</mat-label>
-            <input class="form__field" matInput [matAutocomplete]="auto" formControlName="series" required>
-            <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let specie of species" [value]="specie">
-                    {{specie}}
-                </mat-option> -->
-                <mat-option>Something</mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+    <form class="animal__form form" [formGroup]="petVaccination">
+        <h3 class="form__title">Сведения о вакцинации</h3>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>№ п/п</mat-label>
+                <input class="form__field" formControlName="order" matInput required>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>Дата</mat-label>
+                <input class="form__field" matInput formControlName="date" required>
+            </mat-form-field>
+        </div>
+        <div class="form__field-group">
+            <mat-form-field class="form__field">
+                <mat-label>Вид вакцины</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="vaccine" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="form__field">
+                <mat-label>№ серии</mat-label>
+                <input class="form__field" matInput [matAutocomplete]="auto" formControlName="series" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let specie of species" [value]="specie">
+                        {{specie}}
+                    </mat-option> -->
+                    <mat-option>Something</mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
     </form>
-
-    <ng-container *ngIf="curId; else elseTemplate">
-        <button class="pet__btn btn" mat-flat-button color="accent" [disabled]="!formManage.valid" (click)="savePet()"><span class="btn__text">Сохранить изменения</span></button>
+    <!-- <ng-container *ngIf="curId; else elseTemplate">
+        <button class="pet__btn btn" mat-flat-button color="accent"><span class="btn__text">Сохранить
+                изменения</span></button>
     </ng-container>
     <ng-template #elseTemplate>
-        <button class="pet__btn btn" mat-flat-button color="primary" [disabled]="!formManage.valid" (click)="createPet()"><span class="btn__text">Добавить животное</span></button>
-    </ng-template>
+        <button class="pet__btn btn" mat-flat-button color="primary"><span class="btn__text">Добавить
+                животное</span></button>
+    </ng-template> -->
 </div>

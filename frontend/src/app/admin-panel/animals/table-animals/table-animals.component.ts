@@ -4,7 +4,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Animal {
   card_num: string;
@@ -70,7 +70,7 @@ export class TableAnimalsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.animals = this.route.snapshot.data.animals;
@@ -175,5 +175,9 @@ export class TableAnimalsComponent implements OnInit {
     if (emptyFilters == filters.length)
       return array;
     return pipedPets;
+  }
+
+  addNew() {
+    this.router.navigate([this.router.url, 'add']);
   }
 }

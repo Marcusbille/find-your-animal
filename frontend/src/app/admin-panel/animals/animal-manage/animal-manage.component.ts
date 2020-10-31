@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -20,12 +21,20 @@ export class AnimalManageComponent implements OnInit {
   petResponsible: FormGroup;
   petSanitation: FormGroup;
   petVaccination: FormGroup;
+  curId: number;
 
-
-  animalControl = new FormControl('', Validators.required);
-  selectFormControl = new FormControl('', Validators.required);
-
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {
+    this.createPetMain();
+    this.createPetAdditional();
+    this.createPetCatchInfo();
+    this.createPetHealth();
+    this.createPetMove();
+    this.createPetOwners();
+    this.createPetResponsible();
+    this.createPetSanitation();
+    this.createPetVaccination();
+    this.curId = this.route.snapshot.params['animalId'];
+  }
 
   ngOnInit() {
   }
@@ -46,12 +55,11 @@ export class AnimalManageComponent implements OnInit {
       "size": ["", [Validators.required]],
       "special": ["", [Validators.required]],
       "enclosure": ["", [Validators.required]],
-
     })
   }
 
   createPetAdditional() {
-    this.petMain = this.fb.group({
+    this.petAdditional = this.fb.group({
       "id_tag": ["", [Validators.required]],
       "ster_date": ["", [Validators.required]],
       "doctor": ["", [Validators.required]],
@@ -60,7 +68,7 @@ export class AnimalManageComponent implements OnInit {
   }
 
   createPetCatchInfo() {
-    this.petMain = this.fb.group({
+    this.petCatchInfo = this.fb.group({
       "order_num": ["", [Validators.required]],
       "order_data": ["", [Validators.required]],
       "district": ["", [Validators.required]],
@@ -71,14 +79,14 @@ export class AnimalManageComponent implements OnInit {
   }
 
   createPetHealth() {
-    this.petMain = this.fb.group({
+    this.petHealth = this.fb.group({
       "check_date": ["", [Validators.required]],
       "anamnesis": ["", [Validators.required]],
     })
   }
 
   createPetMove() {
-    this.petMain = this.fb.group({
+    this.petMove = this.fb.group({
       "date_in": ["", [Validators.required]],
       "act": ["", [Validators.required]],
       "date_out": ["", [Validators.required]],
@@ -89,7 +97,7 @@ export class AnimalManageComponent implements OnInit {
   }
 
   createPetOwners() {
-    this.petMain = this.fb.group({
+    this.petOwners = this.fb.group({
       "legal_entity": ["", [Validators.required]],
       "guardian": ["", [Validators.required]],
       "individual": ["", [Validators.required]],
@@ -97,13 +105,13 @@ export class AnimalManageComponent implements OnInit {
   }
 
   createPetResponsible() {
-    this.petMain = this.fb.group({
+    this.petResponsible = this.fb.group({
       "person": ["", [Validators.required]],
     })
   }
 
   createPetSanitation() {
-    this.petMain = this.fb.group({
+    this.petSanitation = this.fb.group({
       "order": ["", [Validators.required]],
       "date": ["", [Validators.required]],
       "medicine": ["", [Validators.required]],
@@ -112,7 +120,7 @@ export class AnimalManageComponent implements OnInit {
   }
 
   createPetVaccination() {
-    this.petMain = this.fb.group({
+    this.petVaccination = this.fb.group({
       "order": ["", [Validators.required]],
       "date": ["", [Validators.required]],
       "vaccine": ["", [Validators.required]],

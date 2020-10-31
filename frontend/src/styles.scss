@@ -61,6 +61,26 @@ ul {
     margin: 0 auto;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    &__title {
+        margin-top: 15px;
+    }
+    &__field {
+    }
+    &__field-group {
+        display: flex;
+        flex-direction: row;
+        .form__field {
+            flex: 0 0 50%;
+            &:not(:first-child) {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
 .dialog-close {
     position: absolute;
     top: -19px;
