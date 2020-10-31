@@ -13,3 +13,18 @@ exports.getShelters = (req, res) => {
         });
     });
 }
+
+exports.getShelter = (req, res) => {
+    let shelter_id = req.params.id
+    Shelter.findOne({
+        where: {
+            id: shelter_id
+        }
+    }).then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message
+        });
+    });
+}

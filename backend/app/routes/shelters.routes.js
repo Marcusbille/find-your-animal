@@ -5,5 +5,7 @@ module.exports = app => {
 
     router.get("/", shelters.getShelters);
 
+    router.get("/:id", shelters.getShelter);
+
     app.use('/api/shelters', router);
 };
