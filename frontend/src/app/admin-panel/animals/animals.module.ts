@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [AnimalsComponent, TableAnimalsComponent, AnimalManageComponent],
@@ -40,7 +41,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     MatSelectModule,
     MatAutocompleteModule,
-    DragDropModule
+    DragDropModule,
+    MatExpansionModule,
+    MatCheckboxModule
   ]
 })
 export class AnimalsModule { }

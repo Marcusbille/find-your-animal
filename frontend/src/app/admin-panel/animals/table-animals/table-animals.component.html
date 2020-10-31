@@ -1,11 +1,82 @@
-<div class="admin-panel__controls">
-    <button class="admin-panel__controls-btn btn" mat-flat-button color="primary"><span
-            class="btn__text">Добавить</span></button>
-    <div class="admin-panel__search">
-        <mat-form-field class="admin-panel__search-field">
-            <mat-label>Поиск</mat-label>
-            <input matInput [(ngModel)]="searchStr" (input)="updateTable()">
-        </mat-form-field>
+<div class="admin-panel__controls controls">
+    <div class="controls__group">
+        <button class="controls__controls-btn btn" mat-flat-button color="primary"><span
+                class="btn__text">Добавить</span></button>
+        <div class="controls__search">
+            <mat-form-field class="controls__search-field">
+                <mat-label>Поиск</mat-label>
+                <input matInput [(ngModel)]="searchStr" (input)="updateTable()">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="controls__filters animal-filters">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <span class="animal-filters__title">Фильтры</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="animal-filters__list">
+                    <div class="animal-filters__filter-container">
+                        <div class="animal-filters__filter filter">
+                            <p class="filter__name">Вид животного</p>
+                            <ul class="filter__options">
+                                <li class="filter__option" *ngFor="let option of filters[0].options">
+                                    <mat-checkbox color="warn" #speciesCheckbox
+                                        (change)="changeFilter($event, 'species', option)"
+                                        [disabled]="checkDisabled('species', option, dataSource.data, speciesCheckbox)">
+                                        {{option}}
+                                    </mat-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="animal-filters__filter-container">
+                        <div class="animal-filters__filter filter">
+                            <p class="filter__name">Пол</p>
+                            <ul class="filter__options">
+                                <li class="filter__option" *ngFor="let option of filters[1].options">
+                                    <mat-checkbox color="warn" #genderCheckbox
+                                        (change)="changeFilter($event, 'gender', option)"
+                                        [disabled]="checkDisabled('gender', option, dataSource.data, genderCheckbox)">
+                                        {{option}}
+                                    </mat-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="animal-filters__filter-container">
+                        <div class="animal-filters__filter filter">
+                            <p class="filter__name">Порода</p>
+                            <ul class="filter__options">
+                                <li class="filter__option" *ngFor="let option of filters[2].options">
+                                    <mat-checkbox color="warn" #breedCheckbox
+                                        (change)="changeFilter($event, 'breed', option)"
+                                        [disabled]="checkDisabled('breed', option, dataSource.data, breedCheckbox)">
+                                        {{option}}
+                                    </mat-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="animal-filters__filter-container">
+                        <div class="animal-filters__filter filter">
+                            <p class="filter__name">Окрас</p>
+                            <ul class="filter__options">
+                                <li class="filter__option" *ngFor="let option of filters[3].options">
+                                    <mat-checkbox color="warn" #hair_colorCheckbox
+                                        (change)="changeFilter($event, 'hair_color', option)"
+                                        [disabled]="checkDisabled('hair_color', option, dataSource.data, hair_colorCheckbox)">
+                                        {{option}}
+                                    </mat-checkbox>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 </div>
 <table class="table" mat-table [dataSource]="dataSource" matSort>
@@ -79,11 +150,11 @@
         <td mat-cell *matCellDef="let element">
             <div class="table__controls">
                 <button class="table__controls-btn btn table__edit" mat-ripple color="accent">
-                        <fa-icon icon="pen" class="icon"></fa-icon>
-                    </button>
+                    <fa-icon icon="pen" class="icon"></fa-icon>
+                </button>
                 <button class="table__controls-btn btn table__delete" mat-ripple color="warn">
                     <fa-icon icon="trash-alt"></fa-icon>
-                    </button>
+                </button>
             </div>
         </td>
     </ng-container>
