@@ -40,27 +40,27 @@ Pet_main.belongsTo(Shelter, { foreignKey: 'shelter_id' });
 
 exports.getAllPets = (req, res) => {
     Pet_main.findAll({
-        where: {
-            shelter_id: {
-                [Op.not]: null
-            }
-        },
-        include: [{
-            model: Pet_additional
-        }, {
-            model: Pet_catch_info
-        },
-        {
-            model: Pet_move
-        },
-        {
-            model: Pet_responsible
-        },
-        {
-            model: Shelter
-        }
-        ]
-    })
+            where: {
+                shelter_id: {
+                    [Op.not]: null
+                }
+            },
+            include: [{
+                    model: Pet_additional
+                }, {
+                    model: Pet_catch_info
+                },
+                {
+                    model: Pet_move
+                },
+                {
+                    model: Pet_responsible
+                },
+                {
+                    model: Shelter
+                }
+            ]
+        })
         .then(data => {
             let arr = [];
             data.forEach(e => {
@@ -95,25 +95,25 @@ exports.getAllPets = (req, res) => {
 
 exports.getOnePet = (req, res) => {
     Pet_main.findAll({
-        where: {
-            id: req.params.id
-        },
-        include: [{
-            model: Pet_additional
-        }, {
-            model: Pet_catch_info
-        },
-        {
-            model: Pet_move
-        },
-        {
-            model: Pet_responsible
-        },
-        {
-            model: Shelter
-        },
-        ]
-    })
+            where: {
+                id: req.params.id
+            },
+            include: [{
+                    model: Pet_additional
+                }, {
+                    model: Pet_catch_info
+                },
+                {
+                    model: Pet_move
+                },
+                {
+                    model: Pet_responsible
+                },
+                {
+                    model: Shelter
+                },
+            ]
+        })
         .then(data => {
             res.send(data[0]);
         })
@@ -127,8 +127,8 @@ exports.getOnePet = (req, res) => {
 exports.deletePet = (req, res) => {
     let pet_id = req.params.id
     Pet_main.destroy({
-        where: { id: pet_id }
-    })
+            where: { id: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -147,93 +147,102 @@ exports.deletePet = (req, res) => {
         });
 }
 
-exports.createPet = (req, res) => {
-    res.send(req.body);
-    // let pet_id;
-    // let main = {
-    //     card_num: req.body.main.card_num,
-    //     species: req.body.main.species,
-    //     age: req.body.main.age,
-    //     weight: req.body.main.weight,
-    //     name: req.body.main.name,
-    //     gender: req.body.main.gender,
-    //     breed: req.body.main.breed,
-    //     hair_color: req.body.main.hair_color,
-    //     hair_type: req.body.main.hair_type,
-    //     ears_type: req.body.main.ears_type,
-    //     tail_type: req.body.main.tail_type,
-    //     size: req.body.main.size,
-    //     enclosure: req.body.main.enclosure,
-    //     shelter_id: req.body.main.shelter_id
-    // };
-    // let additional = {
-    //     id_tag: req.body.additional.id_tag,
-    //     ster_date: req.body.additional.ster_date,
-    //     doctor: req.body.additional.doctor,
-    //     socialised: req.body.additional.socialised,
-    //     pet_num: pet_id
-    // };
-    // let catch_info = {
-    //     order_num: req.body.catch_info.order_num,
-    //     order_data: req.body.catch_info.order_data,
-    //     district: req.body.catch_info.district,
-    //     catch_report: req.body.catch_info.catch_report,
-    //     catch_address: req.body.catch_info.catch_address,
-    //     pet_num: pet_id
-    // };
-    // let move = {
-    //     date_in: req.body.move.date_in,
-    //     act: req.body.move.act,
-    //     date_out: req.body.move.date_out,
-    //     reason: req.body.move.reason,
-    //     order: req.body.move.order,
-    //     pet_num: pet_id
-    // };
-    // let responsible = {
-    //     person: req.body.responsible.person,
-    //     pet_num: pet_id
-    // };
-
-    // Pet_main.create(main)
-    //     .then(data => {
-    //         res.send(data);
-    //         pet_id = data.id;
-    //         Pet_additional.create(additional).then(data => {
-    //             res.send(data)
-    //         }).catch(err => {
-    //             res.status(500).send({
-    //                 message: err.message
-    //             });
-    //         });
-    //         Pet_catch_info.create(catch_info).then(data => {
-    //             res.send(data)
-    //         }).catch(err => {
-    //             res.status(500).send({
-    //                 message: err.message
-    //             });
-    //         });
-    //         Pet_move.create(move).then(data => {
-    //             res.send(data)
-    //         }).catch(err => {
-    //             res.status(500).send({
-    //                 message: err.message
-    //             });
-    //         });
-    //         Pet_responsible.create(responsible).then(data => {
-    //             res.send(data)
-    //         }).catch(err => {
-    //             res.status(500).send({
-    //                 message: err.message
-    //             });
-    //         });
-    //     })
-    //     .catch(err => {
-    //         res.status(500).send({
-    //             message: err.message
-    //         });
-    //     });
+exports.createPet_main = (req, res) => {
+    let main = {
+        card_num: req.body.card_num,
+        species: req.body.species,
+        age: req.body.age,
+        weight: req.body.weight,
+        name: req.body.name,
+        gender: req.body.gender,
+        breed: req.body.breed,
+        hair_color: req.body.hair_color,
+        hair_type: req.body.hair_type,
+        ears_type: req.body.ears_type,
+        tail_type: req.body.tail_type,
+        size: req.body.size,
+        enclosure: req.body.enclosure,
+        shelter_id: req.body.shelter_id
+    };
+    Pet_main.create(main)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(err);
+        });
 }
 
+exports.createPet_additional = (req, res) => {
+    let pet_id = req.params.id
+    let additional = {
+        id_tag: req.body.id_tag,
+        ster_date: req.body.ster_date,
+        doctor: req.body.doctor,
+        socialised: req.body.socialised,
+        pet_num: pet_id
+    };
+    Pet_additional.create(additional)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(err);
+        });
+}
+
+exports.createPet_catch_info = (req, res) => {
+    let pet_id = req.params.id
+    let catch_info = {
+        order_num: req.body.order_num,
+        order_data: req.body.order_data,
+        district: req.body.district,
+        catch_report: req.body.catch_report,
+        catch_address: req.body.catch_address,
+        pet_num: pet_id
+    };
+    Pet_catch_info.create(catch_info)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(err);
+        });
+}
+
+exports.createPet_responsible = (req, res) => {
+    let pet_id = req.params.id
+    let responsible = {
+        person: req.body.person,
+        pet_num: pet_id
+    };
+    Pet_responsible.create(responsible)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(err);
+        });
+}
+
+exports.createPet_move = (req, res) => {
+    let pet_id = req.params.id
+    let move = {
+        date_in: req.body.move.date_in,
+        act: req.body.move.act,
+        date_out: req.body.move.date_out,
+        reason: req.body.move.reason,
+        order: req.body.move.order,
+        pet_num: pet_id
+    };
+    Pet_move.create(move)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(err);
+        });
+}
 
 exports.makeSanitation = (req, res) => {
     const san = req.body.sanitation;
@@ -258,13 +267,13 @@ exports.makeSanitation = (req, res) => {
 exports.getSanitation = (res, req) => {
     let pet_id = req.params.id;
     Pet_sanitation.findAll({
-        where: {
-            pet_num: pet_id
-        },
-        order: [
-            ['id', 'ASC']
-        ]
-    })
+            where: {
+                pet_num: pet_id
+            },
+            order: [
+                ['id', 'ASC']
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -300,13 +309,13 @@ exports.makeVaccination = (req, res) => {
 exports.getVaccination = (res, req) => {
     let pet_id = req.params.id;
     Pet_vaccination.findAll({
-        where: {
-            pet_num: pet_id
-        },
-        order: [
-            ['id', 'ASC']
-        ]
-    })
+            where: {
+                pet_num: pet_id
+            },
+            order: [
+                ['id', 'ASC']
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -341,13 +350,13 @@ exports.makeHealth = (req, res) => {
 exports.getHealth = (res, req) => {
     let pet_id = req.params.id;
     Pet_health.findAll({
-        where: {
-            pet_num: pet_id
-        },
-        order: [
-            ['id', 'ASC']
-        ]
-    })
+            where: {
+                pet_num: pet_id
+            },
+            order: [
+                ['id', 'ASC']
+            ]
+        })
         .then(data => {
             res.send(data);
         })
@@ -361,8 +370,8 @@ exports.getHealth = (res, req) => {
 exports.updatePet_main = (req, res) => {
     let pet_id = req.params.id;
     Pet_main.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -384,8 +393,8 @@ exports.updatePet_main = (req, res) => {
 exports.updatePet_additional = (req, res) => {
     let pet_id = req.params.id;
     Pet_additional.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -407,8 +416,8 @@ exports.updatePet_additional = (req, res) => {
 exports.updatePet_catch_info = (req, res) => {
     let pet_id = req.params.id;
     Pet_catch_info.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -430,8 +439,8 @@ exports.updatePet_catch_info = (req, res) => {
 exports.updatePet_move = (req, res) => {
     let pet_id = req.params.id;
     Pet_move.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -453,8 +462,8 @@ exports.updatePet_move = (req, res) => {
 exports.updatePet_responsible = (req, res) => {
     let pet_id = req.params.id;
     Pet_responsible.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -498,8 +507,8 @@ exports.createPet_owner = (req, res) => {
 exports.updatePet_owner = (req, res) => {
     let pet_id = req.params.id;
     Pet_owners.update(req.body, {
-        where: { pet_num: pet_id }
-    })
+            where: { pet_num: pet_id }
+        })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -521,10 +530,10 @@ exports.updatePet_owner = (req, res) => {
 exports.getPet_owner = (res, req) => {
     let pet_id = req.params.id;
     Pet_owners.findAll({
-        where: {
-            pet_num: pet_id
-        }
-    })
+            where: {
+                pet_num: pet_id
+            }
+        })
         .then(data => {
             res.send(data);
         })
