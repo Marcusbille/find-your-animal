@@ -63,24 +63,28 @@ exports.getAllPetsPartly = (req, res) => {
             ]
         })
         .then(data => {
-            res.send({
-                card_num: data.card_num,
-                species: data.species,
-                age: data.age,
-                weight: data.weight,
-                name: data.name,
-                gender: data.gender,
-                breed: data.breed,
-                hair_color: data.hair_color,
-                hair_type: data.hair_type,
-                size: data.size,
-                id_tag: data.Pets_additional.id_tag,
-                shelter_name: data.Shelter.name,
-                district: data.Pets_catch_info.district,
-                date_in: data.Pets_move.date_in,
-                reason: data.Pets_move.reason,
-                socialised: data.Pets_additional.socialised
-            });
+            let arr = [];
+            data.forEach(e => {
+                arr.push({
+                    card_num: e.card_num,
+                    species: e.species,
+                    age: e.age,
+                    weight: e.weight,
+                    name: e.name,
+                    gender: e.gender,
+                    breed: e.breed,
+                    hair_color: e.hair_color,
+                    hair_type: e.hair_type,
+                    size: e.size,
+                    id_tag: e.Pets_additional.id_tag,
+                    shelter_name: e.Shelter.name,
+                    district: e.Pets_catch_info.district,
+                    date_in: e.Pets_move.date_in,
+                    reason: e.Pets_move.reason,
+                    socialised: e.Pets_additional.socialised
+                })
+            })
+            res.send(arr);
         })
         .catch(err => {
             res.status(500).send({
