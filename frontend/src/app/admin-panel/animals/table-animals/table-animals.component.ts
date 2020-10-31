@@ -4,6 +4,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { Pet_main } from 'src/app/shared/models/pet_main.model';
 
 export interface Animal {
   card_num: string;
@@ -57,7 +59,8 @@ const ELEMENT_DATA: Animal[] = [
 export class TableAnimalsComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['card_num', 'species', 'age', 'weight', 'name', 'gender', 'breed', 'hair_color', 'hair_type', 'size', 'id_tag', 'shelter_name', 'district', 'date_in', 'reason', 'socialised', 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: any;
+  animals: Pet_main[];
 
   searchStr: string;
   filters = [];
@@ -67,9 +70,14 @@ export class TableAnimalsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.animals = this.route.snapshot.data.animals;
+    this.dataSource = new MatTableDataSource(this.animals);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    console.log(this.animals);
     this.filters.push({
       name: 'species',
       options: [
