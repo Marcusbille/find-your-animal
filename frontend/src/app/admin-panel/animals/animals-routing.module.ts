@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AnimalResolverService } from 'src/app/shared/services/animal-resolver.service';
+import { AnimalsResolverService } from 'src/app/shared/services/animals-resolver.service';
 import { AnimalManageComponent } from './animal-manage/animal-manage.component';
 import { TableAnimalsComponent } from './table-animals/table-animals.component';
 
@@ -11,7 +12,7 @@ const routes: Routes = [
     component: TableAnimalsComponent,
     pathMatch: 'full',
     resolve: {
-      animals: AnimalResolverService
+      animals: AnimalsResolverService
     }
   },
   {
@@ -20,7 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'edit/:animalId',
-    component: AnimalManageComponent
+    component: AnimalManageComponent,
+    resolve: {
+      animal: AnimalResolverService
+    }
   }
 ];
 

@@ -5,5 +5,7 @@ module.exports = app => {
 
     router.get("/", pets.getAllPets);
 
+    router.get("/:id", pets.getOnePet);
+
     app.use('/api/pets', router);
 };

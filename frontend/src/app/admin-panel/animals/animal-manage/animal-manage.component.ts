@@ -22,6 +22,7 @@ export class AnimalManageComponent implements OnInit {
   petSanitation: FormGroup;
   petVaccination: FormGroup;
   curId: number;
+  animal: any;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.createPetMain();
@@ -37,6 +38,19 @@ export class AnimalManageComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.curId) {
+      this.animal = this.route.snapshot.data.animal;
+      console.log(this.animal);
+      this.patchPetMain();
+      this.patchPetAdditional();
+      this.patchPetCatchInfo();
+      this.patchPetHealth();
+      this.patchPetMove();
+      this.patchPetOwners();
+      this.patchPetResponsible();
+      this.patchPetSanitation();
+      this.patchPetVaccination();
+    }
   }
 
   createPetMain() {
@@ -55,7 +69,7 @@ export class AnimalManageComponent implements OnInit {
       "size": ["", [Validators.required]],
       "special": ["", [Validators.required]],
       "enclosure": ["", [Validators.required]],
-    })
+    });
   }
 
   createPetAdditional() {
@@ -64,7 +78,7 @@ export class AnimalManageComponent implements OnInit {
       "ster_date": ["", [Validators.required]],
       "doctor": ["", [Validators.required]],
       "socialised": ["", [Validators.required]],
-    })
+    });
   }
 
   createPetCatchInfo() {
@@ -74,58 +88,146 @@ export class AnimalManageComponent implements OnInit {
       "district": ["", [Validators.required]],
       "catch_report": ["", [Validators.required]],
       "catch_address": ["", [Validators.required]],
-
-    })
+    });
   }
 
   createPetHealth() {
     this.petHealth = this.fb.group({
-      "check_date": ["", [Validators.required]],
-      "anamnesis": ["", [Validators.required]],
-    })
+      "check_date": ["", []],
+      "anamnesis": ["", []],
+    });
   }
 
   createPetMove() {
     this.petMove = this.fb.group({
       "date_in": ["", [Validators.required]],
       "act": ["", [Validators.required]],
-      "date_out": ["", [Validators.required]],
-      "reason": ["", [Validators.required]],
-      "order": ["", [Validators.required]],
-
-    })
+      "date_out": ["", []],
+      "reason": ["", []],
+      "order": ["", []],
+    });
   }
 
   createPetOwners() {
     this.petOwners = this.fb.group({
-      "legal_entity": ["", [Validators.required]],
-      "guardian": ["", [Validators.required]],
-      "individual": ["", [Validators.required]],
-    })
+      "legal_entity": ["", []],
+      "guardian": ["", []],
+      "individual": ["", []],
+    });
   }
 
   createPetResponsible() {
     this.petResponsible = this.fb.group({
+      "shelter": ["", [Validators.required]],
       "person": ["", [Validators.required]],
-    })
+    });
   }
 
   createPetSanitation() {
     this.petSanitation = this.fb.group({
-      "order": ["", [Validators.required]],
-      "date": ["", [Validators.required]],
-      "medicine": ["", [Validators.required]],
-      "dose": ["", [Validators.required]],
-    })
+      "order": ["", []],
+      "date": ["", []],
+      "medicine": ["", []],
+      "dose": ["", []],
+    });
   }
 
   createPetVaccination() {
     this.petVaccination = this.fb.group({
-      "order": ["", [Validators.required]],
-      "date": ["", [Validators.required]],
-      "vaccine": ["", [Validators.required]],
-      "series": ["", [Validators.required]],
-    })
+      "order": ["", []],
+      "date": ["", []],
+      "vaccine": ["", []],
+      "series": ["", []],
+    });
   }
 
+  patchPetMain() {
+    this.petMain.patchValue(
+      {
+        card_num: this.animal.card_num,
+        species: this.animal.species,
+        age: this.animal.age,
+        weight: this.animal.weight,
+        name: this.animal.name,
+        gender: this.animal.gender,
+        hair_color: this.animal.hair_color,
+        hair_type: this.animal.hair_type,
+        ears_type: this.animal.ears_type,
+        tail_type: this.animal.tail_type,
+        size: this.animal.size,
+        special: this.animal.special,
+        enclosure: this.animal.enclosure,
+      });
+  }
+
+  patchPetAdditional() {
+    this.petAdditional.patchValue(
+      {
+        id_tag: this.animal.Pets_additional.id_tag,
+        ster_date: this.animal.Pets_additional.ster_date,
+        doctor: this.animal.Pets_additional.doctor,
+        socialised: this.animal.Pets_additional.socialised,
+      });
+  }
+
+  patchPetCatchInfo() {
+    this.petCatchInfo.patchValue(
+      {
+        order_num: this.animal.Pets_catch_info.order_num,
+        order_data: this.animal.Pets_catch_info.order_data,
+        district: this.animal.Pets_catch_info.district,
+        catch_report: this.animal.Pets_catch_info.catch_report,
+        catch_address: this.animal.Pets_catch_info.catch_address
+      });
+  }
+
+  patchPetHealth() {
+    this.petHealth.patchValue({
+      check_data: this.animal.Pets_health.check_data,
+      anamnesis: this.animal.Pets_health.anamnesis
+    });
+  }
+
+  patchPetMove() {
+    this.petMove.patchValue({
+      date_in: this.animal.Pets_move.date_in,
+      act: this.animal.Pets_move.act,
+      date_out: this.animal.Pets_move.date_out,
+      reason: this.animal.Pets_move.reason,
+      order: this.animal.Pets_move.order
+    });
+  }
+
+  patchPetOwners() {
+    this.petOwners.patchValue({
+      legal_entity: this.animal.Pets_owners.legal_entity,
+      guardian: this.animal.Pets_owners.guardian,
+      individual: this.animal.Pets_owners.individual,
+    });
+  }
+
+  patchPetResponsible() {
+    this.petResponsible.patchValue({
+      shelter: this.animal.Pets_responsible.shelter,
+      person: this.animal.Pets_responsible.person,
+    });
+  }
+
+  patchPetSanitation() {
+    this.petSanitation.patchValue({
+      order: this.animal.Pets_sanitation.order,
+      date: this.animal.Pets_sanitation.date,
+      medicine: this.animal.Pets_sanitation.medicine,
+      dose: this.animal.Pets_sanitation.dose,
+    });
+  }
+
+  patchPetVaccination() {
+    this.petVaccination.patchValue({
+      order: this.animal.Pets_vaccination.order,
+      date: this.animal.Pets_vaccination.date,
+      vaccine: this.animal.Pets_vaccination.vaccine,
+      series: this.animal.Pets_vaccination.series,
+    });
+  }
 }

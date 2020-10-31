@@ -15,4 +15,8 @@ export class AnimalService {
     return this.http.get<any[]>(`${this.apiUrl}/api/pets`);
   }
 
+  getOnePet(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/api/pets/${id}`);
+  }
+
 }

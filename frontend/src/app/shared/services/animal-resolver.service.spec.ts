@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AnimalResolverService } from './animal-resolver.service';
 
-describe('AnimalResolverService', () => {
+describe('OneAnimalResolverService', () => {
   let service: AnimalResolverService;
 
   beforeEach(() => {

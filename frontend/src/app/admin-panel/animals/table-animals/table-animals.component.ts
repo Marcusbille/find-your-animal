@@ -63,7 +63,7 @@ export class TableAnimalsComponent implements OnInit {
 
   searchStr: string;
   filters = [];
-  filtersToDelete = ['card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason'];
+  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason'];
   activeFilters = [];
   lastAddedFilter: string;
 
@@ -180,4 +180,9 @@ export class TableAnimalsComponent implements OnInit {
   addNew() {
     this.router.navigate([this.router.url, 'add']);
   }
+
+  navToEdit(id: number) {
+    this.router.navigate([this.router.url, 'edit', id]);
+  }
+
 }

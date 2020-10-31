@@ -5,10 +5,10 @@ import { AnimalService } from './animal.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AnimalResolverService {
+export class AnimalsResolverService {
 
   constructor(private animalService: AnimalService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.animalService.getOnePet(route.params.animalId);
+    return this.animalService.getAllPets();
   }
 }

@@ -204,7 +204,8 @@
         <th mat-header-cell *matHeaderCellDef>Действие</th>
         <td mat-cell *matCellDef="let element">
             <div class="table__controls">
-                <button class="table__controls-btn btn table__edit" mat-ripple color="accent">
+                <button class="table__controls-btn btn table__edit" mat-ripple color="accent"
+                    (click)="navToEdit(element.id)">
                     <fa-icon icon="pen" class="icon"></fa-icon>
                 </button>
                 <button class="table__controls-btn btn table__delete" mat-ripple color="warn">
