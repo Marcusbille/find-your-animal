@@ -79,6 +79,28 @@ ul {
             }
         }
     }
+    &__orders {
+        position: relative;
+    }
+    &__fields-btn {
+    }
+    &__fields-icon {
+        font-size: 24px;
+        margin: 8px 0 0 5px;
+        &_red {
+            color: $mainRedColor;
+        }
+    }
+    &__field-squad {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: -5px;
+        .form__field {
+            flex: 0 0 50%;
+            padding: 0 5px;
+        }
+    }
 }
 
 .dialog-close {

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Destroyer } from 'src/app/shared/destroyer';
@@ -37,6 +37,10 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
   sizes = ['маленький', 'средний', 'крупный', 'очень крупный'];
   move_types = [];
   shelters = [];
+
+  healthOrders = [];
+  sanitationOrders = [];
+  vaccinationOrders = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private animalService: AnimalService,
     private dictionaryService: DictionaryService, private shelterService: ShelterService) {
@@ -84,6 +88,9 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
           this.refreshDictionary('собака');
         else
           this.refreshDictionary('кошка');
+        this.initPetHealth();
+        this.initPetSanitation();
+        this.initPetVaccination();
         // this.animalService.getPetHealth(this.curId).subscribe(data => {
         //   if (data)
         //     this.patchPetHealth(data);
@@ -100,7 +107,10 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
         //   if (data)
         //     this.patchPetVaccination(data);
         // });
-      }
+      } else
+        this.addHealthOrder();
+      this.addPetSanitation();
+      this.addPetVaccination();
     });
   }
 
@@ -164,9 +174,97 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
 
   createPetHealth() {
     this.petHealth = this.fb.group({
-      "check_date": ["", []],
-      "anamnesis": ["", []],
+      "healthOrders": this.fb.array([])
     });
+  }
+
+  initPetHealth() {
+    let orders = this.petHealth.controls.healthOrders as FormArray;
+    this.healthOrders.forEach(order => {
+      orders.push(this.fb.group({
+        "check_date": [order.check_date, [Validators.required]],
+        "anamnesis": [order.anamnesis, [Validators.required]]
+      }));
+    })
+  }
+
+  addHealthOrder() {
+    let orders = this.petHealth.controls.healthOrders as FormArray;
+    orders.push(this.fb.group({
+      "check_date": ["", [Validators.required]],
+      "anamnesis": ["", [Validators.required]]
+    }));
+  }
+
+  deleteHealthOrder(index: number) {
+    let orders = this.petHealth.controls.healthOrders as FormArray;
+    orders.removeAt(index);
+  }
+
+  createPetSanitation() {
+    this.petSanitation = this.fb.group({
+      "sanitationOrders": this.fb.array([])
+    });
+  }
+
+  initPetSanitation() {
+    let orders = this.petSanitation.controls.sanitationOrders as FormArray;
+    this.sanitationOrders.forEach(order => {
+      orders.push(this.fb.group({
+        "order": [order.order, [Validators.required]],
+        "date": [order.date, [Validators.required]],
+        "medicine": [order.medicine, [Validators.required]],
+        "dose": [order.dose, [Validators.required]]
+      }));
+    })
+  }
+
+  addPetSanitation() {
+    let orders = this.petSanitation.controls.sanitationOrders as FormArray;
+    orders.push(this.fb.group({
+      "order": ["", [Validators.required]],
+      "date": ["", [Validators.required]],
+      "medicine": ["", [Validators.required]],
+      "dose": ["", [Validators.required]]
+    }));
+  }
+
+  deletePetSanitation(index: number) {
+    let orders = this.petSanitation.controls.sanitationOrders as FormArray;
+    orders.removeAt(index);
+  }
+
+  createPetVaccination() {
+    this.petVaccination = this.fb.group({
+      "vaccinationOrders": this.fb.array([])
+    });
+  }
+
+  initPetVaccination() {
+    let orders = this.petVaccination.controls.vaccinationOrders as FormArray;
+    this.vaccinationOrders.forEach(order => {
+      orders.push(this.fb.group({
+        "order": [order.order, [Validators.required]],
+        "date": [order.date, [Validators.required]],
+        "vaccine": [order.vaccine, [Validators.required]],
+        "series": [order.series, [Validators.required]]
+      }));
+    })
+  }
+
+  addPetVaccination() {
+    let orders = this.petVaccination.controls.vaccinationOrders as FormArray;
+    orders.push(this.fb.group({
+      "order": ["", [Validators.required]],
+      "date": ["", [Validators.required]],
+      "vaccine": ["", [Validators.required]],
+      "series": ["", [Validators.required]]
+    }));
+  }
+
+  deletePetVaccination(index: number) {
+    let orders = this.petVaccination.controls.vaccinationOrders as FormArray;
+    orders.removeAt(index);
   }
 
   createPetMove() {
@@ -194,23 +292,6 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
     });
   }
 
-  createPetSanitation() {
-    this.petSanitation = this.fb.group({
-      "order": ["", []],
-      "date": ["", []],
-      "medicine": ["", []],
-      "dose": ["", []],
-    });
-  }
-
-  createPetVaccination() {
-    this.petVaccination = this.fb.group({
-      "order": ["", []],
-      "date": ["", []],
-      "vaccine": ["", []],
-      "series": ["", []],
-    });
-  }
 
   patchPetMain() {
     this.petMain.patchValue(

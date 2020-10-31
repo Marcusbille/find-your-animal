@@ -168,18 +168,29 @@
     </form>
     <form class="animal__form form" [formGroup]="petHealth">
         <h3 class="form__title">Сведения о состоянии здоровья</h3>
-        <div class="form__field-group">
-            <mat-form-field class="form__field">
-                <mat-label>Дата осмотра</mat-label>
-                <input class="form__field" formControlName="check_date" matInput>
-            </mat-form-field>
-            <mat-form-field class="form__field">
-                <mat-label>Анамнез</mat-label>
-                <input class="form__field" matInput formControlName="anamnesis">
-            </mat-form-field>
+        <div class="form__orders">
+            <div class="form__field-group" formArrayName="healthOrders"
+                *ngFor="let order of petHealth.get('healthOrders')['controls']; let i = index">
+                <ng-container [formGroupName]="i">
+                    <mat-form-field class="form__field">
+                        <mat-label>Дата осмотра</mat-label>
+                        <input class="form__item" formControlName="check_date" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Анамнез</mat-label>
+                        <input class="form__item" formControlName="anamnesis" matInput>
+                    </mat-form-field>
+                </ng-container>
+                <button class="form__fields-btn btn" (click)="deleteHealthOrder(i)">
+                    <fa-icon class="form__fields-icon form__fields-icon_red" icon="window-close"></fa-icon>
+                </button>
+            </div>
+            <div class="animal__add-order add-order" (click)="addHealthOrder()">
+                <fa-icon icon="plus-square" class="add-order__icon"></fa-icon>
+                <span class="add-order__text">Новая запись</span>
+            </div>
         </div>
     </form>
-    <!-- ТУТ ФОРМА С ФОТО -->
     <form class="animal__form form" [formGroup]="petMove">
         <h3 class="form__title">Движение животного</h3>
         <div class="form__field-group">
@@ -252,56 +263,78 @@
     </form>
     <form class="animal__form form" [formGroup]="petSanitation">
         <h3 class="form__title">Сведения об обработке от экто- и эндопаразитов</h3>
-        <div class="form__field-group">
-            <mat-form-field class="form__field">
-                <mat-label>№ п/п</mat-label>
-                <input class="form__field" formControlName="order" matInput>
-            </mat-form-field>
-            <mat-form-field class="form__field">
-                <mat-label>Дата</mat-label>
-                <input class="form__field" matInput formControlName="date">
-            </mat-form-field>
-        </div>
-        <div class="form__field-group">
-            <mat-form-field class="form__field">
-                <mat-label>Название препарата</mat-label>
-                <input class="form__field" matInput formControlName="medicine">
-            </mat-form-field>
-            <mat-form-field class="form__field">
-                <mat-label>Доза</mat-label>
-                <input class="form__field" matInput formControlName="dose">
-            </mat-form-field>
+        <div class="form__orders">
+            <div class="form__field-squad" formArrayName="sanitationOrders"
+                *ngFor="let order of petSanitation.get('sanitationOrders')['controls']; let i = index">
+                <ng-container [formGroupName]="i">
+                    <mat-form-field class="form__field">
+                        <mat-label>№ записи</mat-label>
+                        <input class="form__item" formControlName="order" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Дата</mat-label>
+                        <input class="form__item" formControlName="date" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Препарат</mat-label>
+                        <input class="form__item" formControlName="medicine" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Доза</mat-label>
+                        <input class="form__item" formControlName="dose" matInput>
+                    </mat-form-field>
+                </ng-container>
+                <button class="form__fields-btn btn" (click)="deletePetSanitation(i)">
+                    <fa-icon class="form__fields-icon form__fields-icon_red" icon="window-close"></fa-icon>
+                    <span class="animal__delete-order">Удалить запись</span>
+                </button>
+            </div>
+            <div class="animal__add-order add-order" (click)="addPetSanitation()">
+                <fa-icon icon="plus-square" class="add-order__icon"></fa-icon>
+                <span class="add-order__text">Новая запись</span>
+            </div>
         </div>
     </form>
     <form class="animal__form form" [formGroup]="petVaccination">
         <h3 class="form__title">Сведения о вакцинации</h3>
-        <div class="form__field-group">
-            <mat-form-field class="form__field">
-                <mat-label>№ п/п</mat-label>
-                <input class="form__field" formControlName="order" matInput>
-            </mat-form-field>
-            <mat-form-field class="form__field">
-                <mat-label>Дата</mat-label>
-                <input class="form__field" matInput formControlName="date">
-            </mat-form-field>
-        </div>
-        <div class="form__field-group">
-            <mat-form-field class="form__field">
-                <mat-label>Вид вакцины</mat-label>
-                <input class="form__field" matInput formControlName="vaccine">
-            </mat-form-field>
-            <mat-form-field class="form__field">
-                <mat-label>№ серии</mat-label>
-                <input class="form__field" matInput formControlName="series">
-            </mat-form-field>
+        <div class="form__orders">
+            <div class="form__field-squad" formArrayName="sanitationOrders"
+                *ngFor="let order of petSanitation.get('sanitationOrders')['controls']; let i = index">
+                <ng-container [formGroupName]="i">
+                    <mat-form-field class="form__field">
+                        <mat-label>№ записи</mat-label>
+                        <input class="form__item" formControlName="order" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Дата</mat-label>
+                        <input class="form__item" formControlName="date" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Вид вакцины</mat-label>
+                        <input class="form__item" formControlName="medicine" matInput>
+                    </mat-form-field>
+                    <mat-form-field class="form__field">
+                        <mat-label>Серия</mat-label>
+                        <input class="form__item" formControlName="dose" matInput>
+                    </mat-form-field>
+                </ng-container>
+                <button class="form__fields-btn btn" (click)="deletePetSanitation(i)">
+                    <fa-icon class="form__fields-icon form__fields-icon_red" icon="window-close"></fa-icon>
+                    <span class="animal__delete-order">Удалить запись</span>
+                </button>
+            </div>
+            <div class="animal__add-order add-order" (click)="addPetSanitation()">
+                <fa-icon icon="plus-square" class="add-order__icon"></fa-icon>
+                <span class="add-order__text">Новая запись</span>
+            </div>
         </div>
     </form>
     <ng-container *ngIf="curId; else elseTemplate">
-        <button class="pet__btn btn" mat-flat-button color="accent"><span class="btn__text">Сохранить
+        <button class="animal__btn btn" mat-flat-button color="accent"><span class="btn__text">Сохранить
                 изменения</span></button>
     </ng-container>
     <ng-template #elseTemplate>
-        <button class="pet__btn btn" mat-flat-button color="primary" (click)="createPet()"><span
+        <button class="animal__btn btn" mat-flat-button color="primary" (click)="createPet()"><span
                 class="btn__text">Добавить
                 животное</span></button>
     </ng-template>
