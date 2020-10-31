@@ -6,4 +6,6 @@ export interface Shelter {
     address: string;
     phone?: string;
     chief: string;
+    lat: number;
+    long: number;
 }

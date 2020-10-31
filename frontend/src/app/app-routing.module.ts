@@ -4,8 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule)
+  },
+  {
     path: 'admin-panel',
     loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
