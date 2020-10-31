@@ -5,15 +5,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         legal_entity: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
         guardian: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
         individual: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         }
     });
 

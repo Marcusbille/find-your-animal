@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Pet_sanitasion = sequelize.define("Pets_sanitasion", {
+    const Pet_sanitation = sequelize.define("Pets_sanitation", {
         card_num: {
             type: Sequelize.STRING
         },
@@ -17,5 +17,5 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
-    return Pet_sanitasion;
+    return Pet_sanitation;
 };

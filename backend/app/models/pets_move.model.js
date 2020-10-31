@@ -11,15 +11,15 @@ module.exports = (sequelize, Sequelize) => {
         },
         date_out: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
         reason: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
         order: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         }
     });
 

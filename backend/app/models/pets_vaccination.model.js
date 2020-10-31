@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         series: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
     });
 

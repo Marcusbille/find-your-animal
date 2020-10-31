@@ -32,7 +32,7 @@ db.pets_images = require("./pets_images.model.js")(sequelize, Sequelize);
 db.pets_move = require("./pets_move.model.js")(sequelize, Sequelize);
 db.pets_owners = require("./pets_owners.model.js")(sequelize, Sequelize);
 db.pets_responsible = require("./pets_responsible.model.js")(sequelize, Sequelize);
-db.pets_sanitasion = require("./pets_sanitasion.model.js")(sequelize, Sequelize);
+db.pets_sanitation = require("./pets_sanitation.model.js")(sequelize, Sequelize);
 db.pets_vaccination = require("./pets_vaccination.model.js")(sequelize, Sequelize);
 
 

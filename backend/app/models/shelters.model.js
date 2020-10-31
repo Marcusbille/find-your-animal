@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         phone: {
             type: Sequelize.STRING,
-            allowNull = true
+            allowNull: true
         },
         chief: {
             type: Sequelize.STRING

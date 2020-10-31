@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         weight: {
-            type: Sequelize.DOUBLE(5, 1)
+            type: Sequelize.DOUBLE
         },
         name: {
             type: Sequelize.STRING
