@@ -58,7 +58,6 @@ export class ShelterComponent implements OnInit {
         options: []
       });
     }
-    console.log(this.filters);
   }
 
   changeFilter(event: any, filterName: string, filterOption: string) {
