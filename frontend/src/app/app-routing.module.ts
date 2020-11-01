@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)
   },
   {
+    path: 'animals',
+    loadChildren: () => import('./animals/animals.module').then(m => m.AnimalsModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

@@ -18,13 +18,16 @@ import { faEye, faPlusSquare, faTimesCircle, faWindowClose } from '@fortawesome/
 import { faChevronLeft, fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 
+
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthentificationComponent
+    AuthentificationComponent,
+
   ],
   imports: [
     BrowserModule,

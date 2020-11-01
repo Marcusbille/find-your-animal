@@ -1,47 +1,31 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { ActivatedRoute } from '@angular/router';
-import { Shelter } from '../shared/models/shelter.model';
-import { ShelterService } from '../shared/services/shelter.service';
 import { Location } from '@angular/common';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
-  selector: 'app-shelter',
-  templateUrl: './shelter.component.html',
-  styleUrls: ['./shelter.component.scss']
+  selector: 'app-animals-list',
+  templateUrl: './animals-list.component.html',
+  styleUrls: ['./animals-list.component.scss']
 })
-export class ShelterComponent implements OnInit {
+export class AnimalsListComponent implements OnInit {
 
-  shelter_id: number;
   animals: any[];
-  shelter: Shelter;
+
   filters = [];
-  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason', 'enclosure', 'shelter_id', 'special', 'Pets_additional'];
+  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason'];
   activeFilters = [];
-  filtersIsLoaded = false;
-  curPage: number = 1;
   lastAddedFilter: string;
+
+  curPage: number = 1;
 
   @ViewChild('petList') petList: ElementRef;
 
-  constructor(private shelterService: ShelterService, private activatedRoute: ActivatedRoute, private location: Location) {
-  }
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
-    this.shelter = this.activatedRoute.snapshot.data['shelter'];
-    console.log(this.shelter);
-    this.getPetsByShelter(this.shelter.id);
-  }
-
-  getPetsByShelter(id: number) {
-    this.shelterService.getPetsByShelter(id).subscribe(data => {
-      this.animals = data;
-      console.log(data['Pets_mains']);
-      for (let field in data['Pets_mains'][0]) {
-        this.getFilters(data['Pets_mains'], field);
-      }
-      this.filtersIsLoaded = true;
-    })
+    // for (let field in this.animals[0]) {
+    //   this.getFilters(this.animals, field);
+    // }
   }
 
   pageChanged(event) {
@@ -60,7 +44,6 @@ export class ShelterComponent implements OnInit {
         options: []
       });
     }
-    console.log(this.filters);
   }
 
   changeFilter(event: any, filterName: string, filterOption: string) {
@@ -86,10 +69,11 @@ export class ShelterComponent implements OnInit {
     this.activeFilters = this.activeFilters.slice();
   }
 
-  checkDisabled(filterName: string, filterOption: string, array: any[], checkbox: MatCheckbox) {
+  checkDisabled(filterName: string, filterOption: string, array: any, checkbox: MatCheckbox) {
     if (this.lastAddedFilter != filterName) {
-      if (array.filter(item => item[filterName] == filterOption).length > 0)
+      if (array.filter(item => item[filterName] == filterOption).length > 0) {
         return false;
+      }
       else
         return true;
     } else {

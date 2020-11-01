@@ -1,10 +1,10 @@
 <section class="shelter">
     <div class="shelter__container container">
         <div class="shelter__header">
-            <a class="shelter__back back" [routerLink]="['']">
+            <button class="shelter__back back" (click)="goBack()">
                 <fa-icon class="back__icon icon" icon="chevron-left"></fa-icon>
-                <span class="back__text">На главную</span>
-            </a>
+                <span class="back__text">Назад</span>
+            </button>
             <h2 class="shelter__title">{{shelter.name}}</h2>
         </div>
         <div class="shelter__main">
@@ -39,9 +39,7 @@
                                     <p class="filter__name">Вид животного</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[0].options">
-                                            <mat-checkbox color="warn" #speciesCheckbox
-                                                (change)="changeFilter($event, 'species', option)"
-                                                [disabled]="checkDisabled('species', option, animals['Pets_mains'] | petFilters : activeFilters, speciesCheckbox)">
+                                            <mat-checkbox color="warn" #speciesCheckbox (change)="changeFilter($event, 'species', option)" [disabled]="checkDisabled('species', option, animals['Pets_mains'] | petFilters : activeFilters, speciesCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -53,9 +51,7 @@
                                     <p class="filter__name">Пол</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[1].options">
-                                            <mat-checkbox color="warn" #genderCheckbox
-                                                (change)="changeFilter($event, 'gender', option)"
-                                                [disabled]="checkDisabled('gender', option, animals['Pets_mains'] | petFilters : activeFilters, genderCheckbox)">
+                                            <mat-checkbox color="warn" #genderCheckbox (change)="changeFilter($event, 'gender', option)" [disabled]="checkDisabled('gender', option, animals['Pets_mains'] | petFilters : activeFilters, genderCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -67,9 +63,7 @@
                                     <p class="filter__name">Окрас</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[2].options">
-                                            <mat-checkbox color="warn" #hair_colorCheckbox
-                                                (change)="changeFilter($event, 'hair_color', option)"
-                                                [disabled]="checkDisabled('hair_color', option, animals['Pets_mains'] | petFilters : activeFilters, hair_colorCheckbox)">
+                                            <mat-checkbox color="warn" #hair_colorCheckbox (change)="changeFilter($event, 'hair_color', option)" [disabled]="checkDisabled('hair_color', option, animals['Pets_mains'] | petFilters : activeFilters, hair_colorCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -81,9 +75,7 @@
                                     <p class="filter__name">Шерсть</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[3].options">
-                                            <mat-checkbox color="warn" #hair_typeCheckbox
-                                                (change)="changeFilter($event, 'hair_type', option)"
-                                                [disabled]="checkDisabled('hair_type', option, animals['Pets_mains'] | petFilters : activeFilters, hair_typeCheckbox)">
+                                            <mat-checkbox color="warn" #hair_typeCheckbox (change)="changeFilter($event, 'hair_type', option)" [disabled]="checkDisabled('hair_type', option, animals['Pets_mains'] | petFilters : activeFilters, hair_typeCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -95,9 +87,7 @@
                                     <p class="filter__name">Уши</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[4].options">
-                                            <mat-checkbox color="warn" #ears_typeCheckbox
-                                                (change)="changeFilter($event, 'ears_type', option)"
-                                                [disabled]="checkDisabled('ears_type', option, animals['Pets_mains'] | petFilters : activeFilters, ears_typeCheckbox)">
+                                            <mat-checkbox color="warn" #ears_typeCheckbox (change)="changeFilter($event, 'ears_type', option)" [disabled]="checkDisabled('ears_type', option, animals['Pets_mains'] | petFilters : activeFilters, ears_typeCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -109,9 +99,7 @@
                                     <p class="filter__name">Хвост</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[5].options">
-                                            <mat-checkbox color="warn" #tail_typeCheckbox
-                                                (change)="changeFilter($event, 'tail_type', option)"
-                                                [disabled]="checkDisabled('tail_type', option, animals['Pets_mains'] | petFilters : activeFilters, tail_typeCheckbox)">
+                                            <mat-checkbox color="warn" #tail_typeCheckbox (change)="changeFilter($event, 'tail_type', option)" [disabled]="checkDisabled('tail_type', option, animals['Pets_mains'] | petFilters : activeFilters, tail_typeCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -123,9 +111,7 @@
                                     <p class="filter__name">Размер</p>
                                     <ul class="filter__options">
                                         <li class="filter__option" *ngFor="let option of filters[6].options">
-                                            <mat-checkbox color="warn" #sizeCheckbox
-                                                (change)="changeFilter($event, 'size', option)"
-                                                [disabled]="checkDisabled('size', option, animals['Pets_mains'] | petFilters : activeFilters, sizeCheckbox)">
+                                            <mat-checkbox color="warn" #sizeCheckbox (change)="changeFilter($event, 'size', option)" [disabled]="checkDisabled('size', option, animals['Pets_mains'] | petFilters : activeFilters, sizeCheckbox)">
                                                 {{option}}
                                             </mat-checkbox>
                                         </li>
@@ -137,10 +123,8 @@
                 </mat-accordion>
             </div>
             <div class="list__items" #petList *ngIf="animals">
-                <ng-container
-                    *ngIf="(animals['Pets_mains'] | petFilters : activeFilters).length > 0; else elseTemplate">
-                    <div class="list__item"
-                        *ngFor="let pet of animals['Pets_mains'] | petFilters : activeFilters | paginate: { itemsPerPage: 16, currentPage: curPage }">
+                <ng-container *ngIf="(animals['Pets_mains'] | petFilters : activeFilters).length > 0; else elseTemplate">
+                    <div class="list__item" *ngFor="let pet of animals['Pets_mains'] | petFilters : activeFilters | paginate: { itemsPerPage: 16, currentPage: curPage }">
                         <a class="list__card card" [routerLink]="['/shelter', pet.shelter_id, pet.id]">
                             <div class="card__header">
                                 <span class="card__title">{{pet.name}}</span>
@@ -166,8 +150,7 @@
             </div>
         </div>
         <div class="shelter__page-controls">
-            <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)"
-                previousLabel="Предыдущая" nextLabel="Следующая" autoHide="true" maxSize="8">
+            <pagination-controls (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)" previousLabel="Предыдущая" nextLabel="Следующая" autoHide="true" maxSize="8">
             </pagination-controls>
         </div>
     </div>
