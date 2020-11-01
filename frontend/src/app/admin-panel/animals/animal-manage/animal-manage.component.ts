@@ -479,7 +479,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
             console.log(res);
             this.animalService.updatePetResponsible(responsible, this.curId).subscribe(res => {
               console.log(res);
-              this.animalService.updatePetOwner(owner, this.curId).subscribe(res => {
+              this.animalService.postPetOwner(owner, this.curId).subscribe(res => {
                 console.log(res);
                 this.animalService.postPetHealth(health, this.curId).subscribe(res => {
                   console.log(res);
@@ -498,7 +498,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
       })
     })
 
-    // this.router.navigate(["admin-panel/animals"]);
+    this.router.navigate(["admin-panel/animals"]);
   }
 
   formValid() {

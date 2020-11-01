@@ -20,10 +20,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         lat: {
-            type: Sequelize.STRING
+            type: Sequelize.DECIMAL
         },
         long: {
-            type: Sequelize.STRING
+            type: Sequelize.DECIMAL
         }
     });
 

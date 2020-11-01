@@ -88,10 +88,6 @@ export class AnimalService {
     return this.http.put(`${this.apiUrl}/api/pets/move/${id}`, data)
   }
 
-  updatePetOwner(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/owner/${id}`, data)
-  }
-
   updatePetResponsible(data, id) {
     return this.http.put(`${this.apiUrl}/api/pets/responsible/${id}`, data)
   }

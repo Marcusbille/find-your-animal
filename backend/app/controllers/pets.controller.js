@@ -92,7 +92,6 @@ exports.getAllPets = (req, res) => {
         .then(data => {
             let arr = [];
             data.forEach(e => {
-                console.log(e);
                 arr.push({
                     id: e.id,
                     card_num: e.card_num,
@@ -507,7 +506,7 @@ exports.updatePet_responsible = (req, res) => {
 
 
 
-exports.createPet_owner = (req, res) => {
+exports.makePet_owner = (req, res) => {
     let pet_id = req.params.id;
     let owner = {
         legal_entity: req.body.legal_entity,
@@ -516,43 +515,29 @@ exports.createPet_owner = (req, res) => {
         pet_num: pet_id
 
     }
-    Pet_owners.create(owner)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error updating Pet_owners"
+    Pet_owners.destroy({
+        where: {
+            pet_num: pet_id
+        }
+    }).then(data => {
+        Pet_owners.create(owner)
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "Error updating Pet_owners"
+                });
             });
-        });
-}
+    })
 
-exports.updatePet_owner = (req, res) => {
-    let pet_id = req.params.id;
-    Pet_owners.update(req.body, {
-            where: { pet_num: pet_id }
-        })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Pet_owner was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update Pet_owner`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error updating Pet_owner"
-            });
-        });
+
+
 }
 
 exports.getPet_owner = (req, res) => {
     let pet_id = req.params.id;
-    Pet_owners.findAll({
+    Pet_owners.findOne({
             where: {
                 pet_num: pet_id
             }
