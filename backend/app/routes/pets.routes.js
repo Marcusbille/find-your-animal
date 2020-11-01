@@ -30,6 +30,7 @@ module.exports = app => {
     router.put('/responsible/:id', pets.updatePet_responsible);
 
     router.get("/shelterwithpets/:id", pets.getShelterPets);
+    router.get("/ready/all", pets.getAllReadyPets);
 
     app.use('/api/pets', router);
 };

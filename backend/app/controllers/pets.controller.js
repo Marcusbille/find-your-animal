@@ -50,6 +50,12 @@ exports.getShelterPets = (req, res) => {
                     model: Pet_additional,
                     where: { socialised: "да" }
                 },
+                {
+                    model: Pet_move,
+                    where: {
+                        date_out: null
+                    }
+                }
                 // {
                 //     model: Pet_images
                 // }
@@ -64,6 +70,27 @@ exports.getShelterPets = (req, res) => {
     });
 }
 
+exports.getAllReadyPets = (req, res) => {
+    Pet_main.findAll({
+        where: {
+            shelter_id: {
+                [Op.not]: null
+            }
+        },
+        include: [{
+                model: Pet_additional
+            },
+            {
+                model: Pet_move,
+                where: {
+                    date_out: null
+                }
+            }
+        ]
+    }).then(data => {
+        res.send(data);
+    })
+}
 
 exports.getAllPets = (req, res) => {
     Pet_main.findAll({
