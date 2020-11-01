@@ -29,14 +29,12 @@ export class ShelterComponent implements OnInit {
 
   ngOnInit(): void {
     this.shelter = this.activatedRoute.snapshot.data['shelter'];
-    console.log(this.shelter);
     this.getPetsByShelter(this.shelter.id);
   }
 
   getPetsByShelter(id: number) {
     this.shelterService.getPetsByShelter(id).subscribe(data => {
       this.animals = data;
-      console.log(data['Pets_mains']);
       for (let field in data['Pets_mains'][0]) {
         this.getFilters(data['Pets_mains'], field);
       }

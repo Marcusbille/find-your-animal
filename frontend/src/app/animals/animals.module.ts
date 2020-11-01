@@ -8,8 +8,8 @@ import { AnimalsListComponent } from './animals-list/animals-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PetFiltersModule } from '../shared/pipes/pet-filters/pet-filters.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -21,8 +21,8 @@ import { PetFiltersModule } from '../shared/pipes/pet-filters/pet-filters.module
     NgxPaginationModule,
     MatCheckboxModule,
     MatExpansionModule,
-    FontAwesomeModule,
-    PetFiltersModule
+    PetFiltersModule,
+    FontAwesomeModule
   ]
 })
 export class AnimalsModule { }

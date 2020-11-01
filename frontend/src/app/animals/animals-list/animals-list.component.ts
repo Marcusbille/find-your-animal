@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { AnimalService } from 'src/app/shared/services/animal.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-animals-list',
@@ -12,20 +14,31 @@ export class AnimalsListComponent implements OnInit {
   animals: any[];
 
   filters = [];
-  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason'];
+  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason', 'shelter_id', 'special', 'enclosure',
+    'Pets_additional', 'Pets_move'];
   activeFilters = [];
   lastAddedFilter: string;
+  filtersIsLoaded = false;
 
   curPage: number = 1;
 
   @ViewChild('petList') petList: ElementRef;
 
-  constructor(private location: Location) { }
+  constructor(private animalService: AnimalService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
-    // for (let field in this.animals[0]) {
-    //   this.getFilters(this.animals, field);
-    // }
+    this.getReadyPets();
+  }
+
+  getReadyPets() {
+    this.animalService.getReadyPets().subscribe(data => {
+      this.animals = data;
+      console.log(this.animals);
+      for (let field in data[0]) {
+        this.getFilters(data, field);
+      }
+      this.filtersIsLoaded = true;
+    })
   }
 
   pageChanged(event) {
@@ -44,6 +57,7 @@ export class AnimalsListComponent implements OnInit {
         options: []
       });
     }
+    console.log(this.filters);
   }
 
   changeFilter(event: any, filterName: string, filterOption: string) {

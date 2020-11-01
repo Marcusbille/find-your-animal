@@ -1,4 +1,31 @@
-@import '_variables';
+@import "_variables";
+.animals-list {
+    margin-top: 20px;
+    padding-bottom: 40px;
+    &__container {
+        padding: 0 10px;
+    }
+    &__header {
+        position: relative;
+    }
+    &__back {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &__title {
+        text-align: center;
+    }
+    &__animal-list {
+        margin-top: 15px;
+    }
+    &__page-controls {
+        text-align: center;
+        margin-top: 30px;
+    }
+}
+
 .animal-filters {
     &__title {
         font-family: "Commissioner";
@@ -14,7 +41,8 @@
         flex: 0 0 20%;
         padding: 10px;
     }
-    &__filter {}
+    &__filter {
+    }
 }
 
 .filter {
@@ -45,7 +73,8 @@
         text-align: center;
         margin-top: 25px;
     }
-    &__title {}
+    &__title {
+    }
     &__filters {
         margin-top: 10px;
     }
@@ -95,7 +124,8 @@
         object-fit: cover;
         object-position: center;
     }
-    &__info {}
+    &__info {
+    }
 }
 
 .info {
