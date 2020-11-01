@@ -92,6 +92,7 @@ exports.getAllPets = (req, res) => {
         .then(data => {
             let arr = [];
             data.forEach(e => {
+                console.log(e);
                 arr.push({
                     id: e.id,
                     card_num: e.card_num,
