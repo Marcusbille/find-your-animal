@@ -1,42 +1,41 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatCheckbox } from '@angular/material/checkbox';
-import { ActivatedRoute } from '@angular/router';
-import { Shelter } from '../shared/models/shelter.model';
-import { ShelterService } from '../shared/services/shelter.service';
 import { Location } from '@angular/common';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { AnimalService } from 'src/app/shared/services/animal.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-shelter',
-  templateUrl: './shelter.component.html',
-  styleUrls: ['./shelter.component.scss']
+  selector: 'app-animals-list',
+  templateUrl: './animals-list.component.html',
+  styleUrls: ['./animals-list.component.scss']
 })
-export class ShelterComponent implements OnInit {
+export class AnimalsListComponent implements OnInit {
 
-  shelter_id: number;
   animals: any[];
-  shelter: Shelter;
+
   filters = [];
-  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason', 'enclosure', 'shelter_id', 'special', 'Pets_additional'];
+  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason', 'shelter_id', 'special', 'enclosure',
+    'Pets_additional', 'Pets_move'];
   activeFilters = [];
-  filtersIsLoaded = false;
-  curPage: number = 1;
   lastAddedFilter: string;
+  filtersIsLoaded = false;
+
+  curPage: number = 1;
 
   @ViewChild('petList') petList: ElementRef;
 
-  constructor(private shelterService: ShelterService, private activatedRoute: ActivatedRoute, private location: Location) {
-  }
+  constructor(private animalService: AnimalService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
-    this.shelter = this.activatedRoute.snapshot.data['shelter'];
-    this.getPetsByShelter(this.shelter.id);
+    this.getReadyPets();
   }
 
-  getPetsByShelter(id: number) {
-    this.shelterService.getPetsByShelter(id).subscribe(data => {
+  getReadyPets() {
+    this.animalService.getReadyPets().subscribe(data => {
       this.animals = data;
-      for (let field in data['Pets_mains'][0]) {
-        this.getFilters(data['Pets_mains'], field);
+      console.log(this.animals);
+      for (let field in data[0]) {
+        this.getFilters(data, field);
       }
       this.filtersIsLoaded = true;
     })
@@ -84,10 +83,11 @@ export class ShelterComponent implements OnInit {
     this.activeFilters = this.activeFilters.slice();
   }
 
-  checkDisabled(filterName: string, filterOption: string, array: any[], checkbox: MatCheckbox) {
+  checkDisabled(filterName: string, filterOption: string, array: any, checkbox: MatCheckbox) {
     if (this.lastAddedFilter != filterName) {
-      if (array.filter(item => item[filterName] == filterOption).length > 0)
+      if (array.filter(item => item[filterName] == filterOption).length > 0) {
         return false;
+      }
       else
         return true;
     } else {

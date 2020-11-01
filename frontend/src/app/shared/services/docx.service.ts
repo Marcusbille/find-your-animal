@@ -3,28 +3,18 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class ShelterService {
+export class DocxService {
 
   apiUrl: string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
-  getShelters(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/api/shelters`).pipe(catchError(this.handleError));
+  getDoc(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/api/doc/${id}`).pipe(catchError(this.handleError));
   }
-
-  getOneShelter(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/shelters/${id}`).pipe(catchError(this.handleError));
-  }
-
-  getPetsByShelter(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/api/pets/shelterwithpets/${id}`);
-  }
-
 
   handleError(error) {
     let errorMessage = '';
@@ -36,5 +26,4 @@ export class ShelterService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 }

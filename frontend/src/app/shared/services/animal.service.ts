@@ -37,63 +37,63 @@ export class AnimalService {
   }
 
   postPetMain(data) {
-    return this.http.post(`${this.apiUrl}/api/pets/main`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/main`, data).pipe(catchError(this.handleError));
   }
 
-  postPetAdditional(data, id: number) {
-    return this.http.post(`${this.apiUrl}/api/pets/additional/${id}`, data)
+  postPetAdditional(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/additional/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetCatchInfo(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/catch/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/catch/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetMove(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/move/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/move/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetResponsible(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/responsible/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/responsible/${id}`, data).pipe(catchError(this.handleError));
+  }
+
+  postPetOwner(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/owner/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetVactination(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/vactination/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/vactination/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetSanitation(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/sanitation/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/sanitation/${id}`, data).pipe(catchError(this.handleError));
   }
 
   postPetHealth(data, id) {
-    return this.http.post(`${this.apiUrl}/api/pets/health/${id}`, data)
+    return this.http.post(`${this.apiUrl}/api/pets/health/${id}`, data).pipe(catchError(this.handleError));
   }
 
   updatePetMain(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/main/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/main/${id}`, data).pipe(catchError(this.handleError));
   }
 
   updatePetAdditional(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/additional/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/additional/${id}`, data).pipe(catchError(this.handleError));
   }
 
   updatePetCatchInfo(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/catch/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/catch/${id}`, data).pipe(catchError(this.handleError));
   }
 
   updatePetMove(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/main/${id}`, data)
-  }
-
-  updatePetOwner(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/owner/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/move/${id}`, data).pipe(catchError(this.handleError));
   }
 
   updatePetResponsible(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/responsible/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/responsible/${id}`, data).pipe(catchError(this.handleError));
   }
 
-  getPetsByShelter(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/petstoshelter/${id}`);
+  getReadyPets(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/api/pets/ready/all`).pipe(catchError(this.handleError));
   }
 
   handleError(error) {

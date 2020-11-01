@@ -11,10 +11,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AnimalComponent } from './animal.component';
+import { RequestComponent } from './request/request.component';
 
 
 @NgModule({
-  declarations: [AnimalComponent],
+  declarations: [AnimalComponent, RequestComponent],
   imports: [
     CommonModule,
     AnimalRoutingModule,

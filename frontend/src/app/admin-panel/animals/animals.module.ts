@@ -23,6 +23,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CardAnimalComponent } from './card-animal/card-animal.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
   declarations: [AnimalsComponent, TableAnimalsComponent, AnimalManageComponent, CardAnimalComponent],
@@ -44,7 +45,8 @@ import { CardAnimalComponent } from './card-animal/card-animal.component';
     MatAutocompleteModule,
     DragDropModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxDocViewerModule
   ]
 })
 export class AnimalsModule { }

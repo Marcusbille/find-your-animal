@@ -7,11 +7,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PetFiltersPipe } from '../shared/pipes/pet-filters.pipe';
+import { PetFiltersModule } from '../shared/pipes/pet-filters/pet-filters.module';
+
 
 
 @NgModule({
-  declarations: [ShelterComponent, PetFiltersPipe],
+  declarations: [ShelterComponent,],
   imports: [
     CommonModule,
     ShelterRoutingModule,
@@ -19,6 +20,7 @@ import { PetFiltersPipe } from '../shared/pipes/pet-filters.pipe';
     MatExpansionModule,
     FontAwesomeModule,
     NgxPaginationModule,
+    PetFiltersModule
   ]
 })
 export class ShelterModule { }
