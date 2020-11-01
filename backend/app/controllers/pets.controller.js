@@ -37,6 +37,7 @@ Pet_owners.belongsTo(Pet_main, { foreignKey: 'pet_num' });
 Pet_main.belongsTo(Shelter, { foreignKey: 'shelter_id' });
 
 
+
 exports.getShelterPets = (req, res) => {
     let id = req.params.id;
     Shelter.findOne({
@@ -46,9 +47,13 @@ exports.getShelterPets = (req, res) => {
         include: [{
             model: Pet_main,
             include: [{
-                model: Pet_additional,
-                where: { socialised: "да" }
-            }]
+                    model: Pet_additional,
+                    where: { socialised: "да" }
+                },
+                // {
+                //     model: Pet_images
+                // }
+            ]
         }]
     }).then(data => {
         res.send(data);
@@ -217,7 +222,7 @@ exports.createPet_catch_info = (req, res) => {
     let pet_id = req.params.id
     let catch_info = {
         order_num: req.body.order_num,
-        order_data: req.body.order_data,
+        order_date: req.body.order_date,
         district: req.body.district,
         catch_report: req.body.catch_report,
         catch_address: req.body.catch_address,
@@ -250,11 +255,11 @@ exports.createPet_responsible = (req, res) => {
 exports.createPet_move = (req, res) => {
     let pet_id = req.params.id
     let move = {
-        date_in: req.body.move.date_in,
-        act: req.body.move.act,
-        date_out: req.body.move.date_out,
-        reason: req.body.move.reason,
-        order: req.body.move.order,
+        date_in: req.body.date_in,
+        act: req.body.act,
+        date_out: req.body.date_out,
+        reason: req.body.reason,
+        order: req.body.order,
         pet_num: pet_id
     };
     Pet_move.create(move)
