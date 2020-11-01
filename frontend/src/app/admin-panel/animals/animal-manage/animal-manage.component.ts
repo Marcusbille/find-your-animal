@@ -6,6 +6,7 @@ import { Destroyer } from 'src/app/shared/destroyer';
 import { AnimalService } from 'src/app/shared/services/animal.service';
 import { DictionaryService } from 'src/app/shared/services/dictionary.service';
 import { ShelterService } from 'src/app/shared/services/shelter.service';
+import { Location } from '@angular/common';
 
 
 
@@ -43,7 +44,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
   vaccinationOrders = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private animalService: AnimalService,
-    private dictionaryService: DictionaryService, private shelterService: ShelterService, private router: Router) {
+    private dictionaryService: DictionaryService, private shelterService: ShelterService, private router: Router, private location: Location) {
     super();
     this.createPetMain();
     this.createPetAdditional();
@@ -118,6 +119,11 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
       }
     });
   }
+
+  goBack() {
+    this.location.back();
+  }
+
 
   speciesChanged(event: any) {
     if (event.value == 'собака') {
