@@ -10,8 +10,6 @@ export class RequestComponent implements OnInit {
 
   formRequest: FormGroup;
 
-  mask = ['+', /[1-9]/, '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
@@ -30,10 +28,6 @@ export class RequestComponent implements OnInit {
 
   checkValidation(): boolean {
     let phone = this.formRequest.controls.phone.value;
-    console.log(phone);
-    console.log(this.formRequest);
-    console.log(phone.replace(/\D/g, '').length);
-    console.log(this.formRequest.valid);
     if (this.formRequest.valid && phone.replace(/\D/g, '').length == 11)
       return false;
     else
