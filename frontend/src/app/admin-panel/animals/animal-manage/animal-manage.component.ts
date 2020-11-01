@@ -396,10 +396,25 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
     let catch_info = this.petCatchInfo.value;
     let move = this.petMove.value;
     let responsible = this.petResponsible.value;
+    let owner = this.petOwners.value;
+
+    let health = this.petHealth.value.healthOrders;
+    let sanit = this.petSanitation.value.sanitationOrders;
+    let vaccine = this.petVaccination.value.vaccinationOrders;
 
     this.animalService.postPetMain(main).subscribe(data => {
       console.log(data);
       let pet_id = data['id'];
+      health.forEach(e => {
+        e.pet_num = pet_id;
+      });
+      vaccine.forEach(e => {
+        e.pet_num = pet_id;
+      });
+      sanit.forEach(e => {
+        e.pet_num = pet_id;
+      });
+
       this.animalService.postPetAdditional(additional, pet_id).subscribe(res => {
         console.log(res);
         this.animalService.postPetCatchInfo(catch_info, pet_id).subscribe(res => {
@@ -408,13 +423,16 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
             console.log(res);
             this.animalService.postPetResponsible(responsible, pet_id).subscribe(res => {
               console.log(res);
-              this.animalService.postPetHealth(this.petHealth.value, pet_id).subscribe(res => {
+              this.animalService.postPetOwner(owner, pet_id).subscribe(res => {
                 console.log(res);
-                this.animalService.postPetSanitation(this.petSanitation.value, pet_id).subscribe(res => {
+                this.animalService.postPetHealth(health, pet_id).subscribe(res => {
                   console.log(res);
-                  this.animalService.postPetVactination(this.petVaccination.value, pet_id).subscribe(res => {
+                  this.animalService.postPetSanitation(sanit, pet_id).subscribe(res => {
                     console.log(res);
-                    console.log('Успех!');
+                    this.animalService.postPetVactination(vaccine, pet_id).subscribe(res => {
+                      console.log(res);
+                      console.log('Успех!');
+                    })
                   })
                 })
               })
@@ -424,7 +442,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
       })
     })
 
-    this.router.navigate(["admin-panel/animals"]);
+    // this.router.navigate(["admin-panel/animals"]);
   }
 
   updatePet() {
@@ -434,7 +452,23 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
     let catch_info = this.petCatchInfo.value;
     let move = this.petMove.value;
     let responsible = this.petResponsible.value;
+    let owner = this.petOwners.value;
 
+    let health = this.petHealth.value.healthOrders;
+    let sanit = this.petSanitation.value.sanitationOrders;
+    let vaccine = this.petVaccination.value.vaccinationOrders;
+
+    health.forEach(e => {
+      e.pet_num = this.curId;
+    });
+    vaccine.forEach(e => {
+      e.pet_num = this.curId;
+    });
+    sanit.forEach(e => {
+      e.pet_num = this.curId;
+    });
+
+    console.log(health, vaccine, sanit);
     this.animalService.updatePetMain(main, this.curId).subscribe(data => {
       console.log(data);
       this.animalService.updatePetAdditional(additional, this.curId).subscribe(res => {
@@ -445,10 +479,16 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
             console.log(res);
             this.animalService.updatePetResponsible(responsible, this.curId).subscribe(res => {
               console.log(res);
-              this.animalService.postPetHealth(this.petHealth.value, this.curId).subscribe(res => {
-                this.animalService.postPetSanitation(this.petSanitation.value, this.curId).subscribe(res => {
-                  this.animalService.postPetVactination(this.petVaccination.value, this.curId).subscribe(res => {
-                    console.log('Успех!');
+              this.animalService.updatePetOwner(owner, this.curId).subscribe(res => {
+                console.log(res);
+                this.animalService.postPetHealth(health, this.curId).subscribe(res => {
+                  console.log(res);
+                  this.animalService.postPetSanitation(sanit, this.curId).subscribe(res => {
+                    console.log(res);
+                    this.animalService.postPetVactination(vaccine, this.curId).subscribe(res => {
+                      console.log(res);
+                      console.log('Успех!');
+                    })
                   })
                 })
               })
@@ -458,7 +498,7 @@ export class AnimalManageComponent extends Destroyer implements OnInit, OnDestro
       })
     })
 
-    this.router.navigate(["admin-panel/animals"]);
+    // this.router.navigate(["admin-panel/animals"]);
   }
 
   formValid() {

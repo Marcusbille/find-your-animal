@@ -18,6 +18,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         chief: {
             type: Sequelize.STRING
+        },
+        lat: {
+            type: Sequelize.STRING
+        },
+        long: {
+            type: Sequelize.STRING
         }
     });
 

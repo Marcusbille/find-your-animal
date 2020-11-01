@@ -8,6 +8,7 @@ module.exports = app => {
     router.post('/catch/:id', pets.createPet_catch_info);
     router.post('/move/:id', pets.createPet_move);
     router.post('/responsible/:id', pets.createPet_responsible);
+    router.post('/owner/:id', pets.createPet_owner);
 
 
     router.post('/vactination/:id', pets.makeVaccination);

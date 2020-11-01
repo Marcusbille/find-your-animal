@@ -40,7 +40,7 @@ export class AnimalService {
     return this.http.post(`${this.apiUrl}/api/pets/main`, data)
   }
 
-  postPetAdditional(data, id: number) {
+  postPetAdditional(data, id) {
     return this.http.post(`${this.apiUrl}/api/pets/additional/${id}`, data)
   }
 
@@ -54,6 +54,10 @@ export class AnimalService {
 
   postPetResponsible(data, id) {
     return this.http.post(`${this.apiUrl}/api/pets/responsible/${id}`, data)
+  }
+
+  postPetOwner(data, id) {
+    return this.http.post(`${this.apiUrl}/api/pets/owner/${id}`, data)
   }
 
   postPetVactination(data, id) {
@@ -81,7 +85,7 @@ export class AnimalService {
   }
 
   updatePetMove(data, id) {
-    return this.http.put(`${this.apiUrl}/api/pets/main/${id}`, data)
+    return this.http.put(`${this.apiUrl}/api/pets/move/${id}`, data)
   }
 
   updatePetOwner(data, id) {

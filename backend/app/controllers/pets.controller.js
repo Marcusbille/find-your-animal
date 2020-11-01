@@ -274,14 +274,15 @@ exports.createPet_move = (req, res) => {
 
 exports.makeSanitation = (req, res) => {
     let san = req.body;
+    console.log(san);
     let pet_id = req.params.id;
 
     Pet_sanitation.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.bulkCreate(san)
-            .then(body => {
-                res.status(status).send(body)
+        Pet_sanitation.bulkCreate(san)
+            .then(data => {
+                res.send(data)
             })
             .catch(err => {
                 res.status(500).send({
@@ -314,14 +315,15 @@ exports.getSanitation = (req, res) => {
 
 exports.makeVaccination = (req, res) => {
     let vac = req.body;
+    console.log(vac)
     let pet_id = req.params.id;
 
-    Pet_sanitation.destroy({
+    Pet_vaccination.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.bulkCreate(vac)
+        Pet_vaccination.bulkCreate(vac)
             .then(body => {
-                res.status(status).send(body)
+                res.send(body);
             })
             .catch(err => {
                 res.status(500).send({
@@ -355,14 +357,15 @@ exports.getVaccination = (req, res) => {
 
 exports.makeHealth = (req, res) => {
     let health = req.body;
+    console.log(health)
     let pet_id = req.params.id;
 
-    Pet_sanitation.destroy({
+    Pet_health.destroy({
         where: { pet_num: pet_id }
     }).then(status => {
-        Contact.bulkCreate(health)
+        Pet_health.bulkCreate(health)
             .then(body => {
-                res.status(status).send(body)
+                res.send(body)
             })
             .catch(err => {
                 res.status(500).send({
@@ -399,16 +402,8 @@ exports.updatePet_main = (req, res) => {
     Pet_main.update(req.body, {
             where: { id: pet_id }
         })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "Pet_main was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update Pet_main`
-                });
-            }
+        .then(data => {
+            res.send(data);
         })
         .catch(err => {
             res.status(500).send({

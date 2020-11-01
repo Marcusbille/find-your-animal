@@ -50,7 +50,7 @@ export class SheltersComponent extends Destroyer implements OnInit, OnDestroy {
 
   initShelterMarkers() {
     for (let shelter of this.shelters) {
-      let marker = DG.marker([shelter.lat, shelter.long]).addTo(this.map).bindLabel(`Приют "${shelter.name}"`);
+      let marker = DG.marker([shelter.lat, shelter.long]).addTo(this.map).bindLabel(`${shelter.name}`);
       marker.shelter_id = shelter.id;
       marker.on('click', (e) => {
         this.scrollToShelter(e.target.shelter_id);
