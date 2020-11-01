@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { ActivatedRoute } from '@angular/router';
 import { Shelter } from '../shared/models/shelter.model';
-import { AnimalService } from '../shared/services/animal.service';
+import { ShelterService } from '../shared/services/shelter.service';
 
 @Component({
   selector: 'app-shelter',
@@ -15,7 +15,7 @@ export class ShelterComponent implements OnInit {
   animals: any[];
   shelter: Shelter;
   filters = [];
-  filtersToDelete = ['id', 'name', 'eye_color', 'description', 'disability', 'shelter_id', 'state', 'Pets_images'];
+  filtersToDelete = ['id', 'card_num', 'age', 'weight', 'name', 'breed', 'id_tag', 'date_in', 'reason', 'enclosure', 'shelter_id', 'special', 'Pets_additional'];
   activeFilters = [];
   filtersIsLoaded = false;
   curPage: number = 1;
@@ -23,19 +23,21 @@ export class ShelterComponent implements OnInit {
 
   @ViewChild('petList') petList: ElementRef;
 
-  constructor(private animalService: AnimalService, private activatedRoute: ActivatedRoute) {
+  constructor(private shelterService: ShelterService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.shelter = this.activatedRoute.snapshot.data['shelter'];
+    console.log(this.shelter);
     this.getPetsByShelter(this.shelter.id);
   }
 
   getPetsByShelter(id: number) {
-    this.animalService.getPetsByShelter(id).subscribe(data => {
+    this.shelterService.getPetsByShelter(id).subscribe(data => {
       this.animals = data;
-      for (let field in data[0]) {
-        this.getFilters(data, field);
+      console.log(data['Pets_mains']);
+      for (let field in data['Pets_mains'][0]) {
+        this.getFilters(data['Pets_mains'], field);
       }
       this.filtersIsLoaded = true;
     })
@@ -57,6 +59,7 @@ export class ShelterComponent implements OnInit {
         options: []
       });
     }
+    console.log(this.filters);
   }
 
   changeFilter(event: any, filterName: string, filterOption: string) {
