@@ -36,7 +36,9 @@ export class CardAnimalComponent implements OnInit {
     this.location.back();
   }
 
-  getDocx() {
-    this.docxService.getDoc(this.animal.id);
-  }
+  // getDocx() {
+  //   this.docxService.getDoc(this.animal.id).subscribe(res => {
+
+  //   })
+  // }
 }
