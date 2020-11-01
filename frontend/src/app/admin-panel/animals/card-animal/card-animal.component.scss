@@ -24,30 +24,32 @@
     &__text {
         margin-top: 8px;
     }
-    &__main {
-    }
+    &__main {}
     &__subtitle {
         margin-top: 10px;
     }
-    &__info {
+    &__info {}
+    &__characteristic-special {}
+    &__sanitation-table {}
+    &__vaccination-table {}
+    &__health-table {}
+    &__document {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
     }
-    &__characteristic-special {
-    }
-    &__sanitation-table {
-    }
-    &__vaccination-table {
-    }
-    &__health-table {
+    &__button {
+        color: #fff;
+        font-size: 22px;
+        font-weight: 500px;
     }
 }
 
 .info {
-    &__image {
-    }
-    &__image-img {
-    }
-    &__content {
-    }
+    &__image {}
+    &__image-img {}
+    &__content {}
 }
 
 .content {
@@ -73,4 +75,11 @@ td {
     border: 1px solid black;
     text-align: center;
     padding: 12px 8px;
+}
+
+.some {
+    font-weight: 500;
+    &_accent {
+        color: #135b96
+    }
 }

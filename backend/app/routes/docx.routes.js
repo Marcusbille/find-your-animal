@@ -3,7 +3,7 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    router.get("/", doc.genDocx);
+    router.get("/:id", doc.genDocx);
 
     app.use('/api/doc', router);
 };

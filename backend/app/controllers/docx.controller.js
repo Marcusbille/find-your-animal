@@ -1,8 +1,45 @@
+const db = require("../models");
+const Pet_main = db.pets_main;
+const Pet_additional = db.pets_additional;
+const Pet_catch_info = db.pets_catch_info;
+const Pet_health = db.pets_health;
+const Pet_images = db.pets_images;
+const Pet_move = db.pets_move;
+const Pet_responsible = db.pets_responsible;
+const Pet_sanitation = db.pets_sanitation;
+const Pet_vaccination = db.pets_vaccination;
+const Pet_owners = db.pets_owners;
+const Shelter = db.shelters;
+
+const Op = db.Sequelize.Op;
+const Sequelize = require("sequelize");
+
+Pet_main.hasOne(Pet_additional, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_catch_info, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_health, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_images, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_move, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_responsible, { foreignKey: 'pet_num' });
+Pet_main.hasMany(Pet_sanitation, { foreignKey: 'pet_num' });
+Pet_main.hasMany(Pet_vaccination, { foreignKey: 'pet_num' });
+Pet_main.hasOne(Pet_owners, { foreignKey: 'pet_num' });
+Shelter.hasMany(Pet_main, { foreignKey: 'shelter_id' });
+
+Pet_additional.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_catch_info.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_health.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_images.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_move.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_responsible.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_sanitation.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_vaccination.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_owners.belongsTo(Pet_main, { foreignKey: 'pet_num' });
+Pet_main.belongsTo(Shelter, { foreignKey: 'shelter_id' });
+
 var Docxtemplater = require('docxtemplater');
 var fs = require('fs');
 var path = require('path');
 var PizZip = require('pizzip');
-const docx = require("docx");
 
 function replaceErrors(key, value) {
     if (value instanceof Error) {
@@ -40,59 +77,91 @@ try {
 }
 
 exports.genDocx = (req, res) => {
-    //set the templateVariables
-    doc.setData({
-        card_num: '121',
-        shelter_address: 'г.Москва, ул.Ебанько, д.44',
-        organisation: ' ГБУ "Автодор"',
-        enclosure: '12',
-        gender: 'женский',
-        age: '10 лет',
-        weight: '23 кг',
-        name: 'Вовка',
-        breed: 'метис',
-        hair_color: 'рыжий',
-        hair_type: 'короткая',
-        ears_type: 'стоячие',
-        tail_type: 'крючком',
-        size: 'большой',
-        special: 'нет',
-        id_tag: '3745672374237',
-        ster_date: '02.01.1535',
-        doctor: "Ебанько Анал Гавриилович",
-        socialised: "да",
-        catch_order: '121',
-        catch_date: '01.32.2077',
-        act_catch: 'УК2312',
-        catch_address: 'Красная Площадь',
-        legal_entity: "__________________________",
-        guardian: "__________________________",
-        individual: 'ВВП',
-        date_in: '21.14.1678',
-        act_in: 'УКРФ01',
-        date_out: '28.19.4888',
-        act_out: '12334ГУ',
-        reason: "переданно в собственность владельцу"
+    let pet_id = req.params.id;
 
-    });
+    Pet_main.findOne({
+        where: {
+            id: pet_id
+        },
+        include: [{
+                model: Pet_additional
+            },
+            {
+                model: Pet_catch_info
+            },
+            {
+                model: Pet_move
+            },
+            {
+                model: Pet_responsible
+            },
+            {
+                model: Pet_sanitation
+            },
+            {
+                model: Pet_vaccination
+            },
+            {
+                model: Pet_health
+            },
+            {
+                model: Pet_owners
+            },
+            {
+                model: Shelter
+            }
+        ]
+    }).then(data => {
+        doc.setData({
+            card_num: ' ' + data.card_num,
+            shelter_address: ' ' + data.Shelter.address,
+            organisation: ' ' + data.Shelter.responsible,
+            enclosure: ' ' + data.enclosure,
+            gender: ' ' + data.gender,
+            age: ' ' + data.age,
+            weight: ' ' + data.weight,
+            name: ' ' + data.name,
+            breed: ' ' + data.breed,
+            hair_color: ' ' + data.hair_color,
+            hair_type: ' ' + data.hair_type,
+            ears_type: ' ' + data.ears_type,
+            tail_type: ' ' + data.tail_type,
+            size: ' ' + data.size,
+            special: ' ' + data.special,
+            id_tag: ' ' + data.Pets_additional.id_tag,
+            ster_date: ' ' + data.Pets_additional.ster_date,
+            doctor: ' ' + data.Pets_additional.doctor,
+            socialised: ' ' + data.Pets_additional.socialised,
+            catch_order: ' ' + data.Pets_catch_info.order_num,
+            catch_date: data.Pets_additional.order_date ? data.Pets_additional.order_date : "________________",
+            act_catch: data.Pets_additional.catch_report ? data.Pets_additional.catch_report : "________________",
+            catch_address: data.Pets_additional.catch_address ? data.Pets_additional.catch_report : "________________",
+            legal_entity: data.Pets_additional.legal_entity ? data.Pets_additional.legal_entity : "__________________________",
+            guardian: data.Pets_additional.guardian ? data.Pets_additional.guardian : "__________________________",
+            individual: data.Pets_additional.individual ? data.Pets_additional.individual : "__________________________",
+            date_in: ' ' + data.Pets_move.date_in,
+            act_in: ' ' + data.Pets_move.act,
+            date_out: data.Pets_move.date_out ? data.Pets_move.date_out : "_____________",
+            act_out: data.Pets_move.order ? data.Pets_move.order : "_____________",
+            reason: data.Pets_move.reason ? data.Pets_move.reason : "_____________"
 
-    try {
-        doc.render()
-    } catch (error) {
-        errorHandler(error);
-    }
-    var buf = doc.getZip()
-        .generate({ type: 'nodebuffer' });
-    // res.send(buf);
-    // docx.Packer.toBuffer(doc).then((buffer) => {
+        });
 
-    fs.writeFileSync(path.resolve('./assets/output.docx'), buf);
-
-    res.download('./assets/output.docx', 'document.docx', function(err) {
-        if (err) {
-            // if the file download fails, we throw an error
-            throw err;
+        try {
+            doc.render()
+        } catch (error) {
+            errorHandler(error);
         }
-    });
-    // res.send(fs.readFile('./assets/output.docx', 'docx'));
+        var buf = doc.getZip()
+            .generate({ type: 'nodebuffer' });
+
+        let dir = `./assets/КАРТОЧКА УЧЕТА ЖИВОТНОГО № ${data.card_num}`;
+        fs.writeFileSync(path.resolve(dir), buf);
+
+        res.download(dir, `КАРТОЧКА УЧЕТА ЖИВОТНОГО № ${data.card_num}.docx`, function(err) {
+            if (err) {
+                throw err;
+            }
+        });
+    })
 }
