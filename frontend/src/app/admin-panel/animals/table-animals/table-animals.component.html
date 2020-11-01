@@ -137,7 +137,7 @@
 </div>
 <table class="table" mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="show_card">
-        <th class="table__th" mat-header-cell *matHeaderCellDef mat-sort-header>Посмореть карточку</th>
+        <th class="table__th" mat-header-cell *matHeaderCellDef>Посмореть карточку</th>
         <td class="table__td" mat-cell *matCellDef="let element">
             <button class="table__btn btn" mat-ripple color="primary" (click)="navToCard(element.id)">
                 <fa-icon class="table__icon icon" icon="eye"></fa-icon>
@@ -225,4 +225,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>

@@ -2,11 +2,13 @@
 .animal {
     text-align: center;
     &__form {
-        width: 50%;
+        width: 65%;
         margin: 0 auto;
     }
-    &__add-order {}
-    &__btn {}
+    &__add-order {
+    }
+    &__btn {
+    }
     &__delete-order {
         font-size: 20px;
         font-weight: 300;

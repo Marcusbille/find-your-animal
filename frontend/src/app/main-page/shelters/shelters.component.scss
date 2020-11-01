@@ -16,7 +16,7 @@
     }
     &__list {
         border: 1px solid $mainBorderColor;
-        flex: 0 0 25%;
+        flex: 0 0 30%;
         min-width: 200px;
         max-height: 650px;
         overflow: auto;
@@ -39,7 +39,7 @@
         }
     }
     &__map {
-        flex: 0 0 75%;
+        flex: 0 0 70%;
         height: 650px;
     }
 }
