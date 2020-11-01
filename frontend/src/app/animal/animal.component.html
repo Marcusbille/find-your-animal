@@ -29,6 +29,10 @@
                 </p>
                 <p class="animal__text"> Для связи с приютом вы можете позвонить по номеру <a
                         [href]="'tel:+' + shelter.phone">+{{shelter.phone}}</a></p>
+                <button class="animal__request btn" mat-raised-button color="primary" (click)="openRequestDialog()">
+                    <span class="btn__text">Оформить
+                        заявку</span>
+                </button>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Shelter } from '../shared/models/shelter.model';
 import { Location } from '@angular/common';
+import { RequestComponent } from './request/request.component';
 
 
 @Component({
@@ -25,6 +26,12 @@ export class AnimalComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  openRequestDialog() {
+    let dialogRef = this.dialog.open(RequestComponent, {
+      autoFocus: false
+    });
   }
 
 }
