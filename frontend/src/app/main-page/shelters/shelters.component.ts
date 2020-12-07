@@ -33,7 +33,6 @@ export class SheltersComponent extends Destroyer implements OnInit, OnDestroy {
   getShelters() {
     this.shelterService.getShelters().pipe(takeUntil(this.destroy$)).subscribe(data => {
       this.shelters = data;
-      console.log(data);
       this.initMap();
     })
   }
