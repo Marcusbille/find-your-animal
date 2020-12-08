@@ -32,7 +32,7 @@ require("./app/routes/shelters.routes")(app);
 require("./app/routes/docx.routes")(app);
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/dist/petFinder");
+    res.sendFile(__dirname + "/dist/find-your-animal");
 });
 
 const PORT = process.env.PORT || 8080;
