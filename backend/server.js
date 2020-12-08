@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
     return next();
 });
 
-app.use(express.static(__dirname + "/dist"));
+app.use(express.static(__dirname + "/dist/find-your-animal"));
 const db = require("./app/models");
 db.sequelize.sync();
 
