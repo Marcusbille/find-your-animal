@@ -21,6 +21,7 @@
         "cors": "^2.8.5",
         "docx": "^5.3.0",
         "docxtemplater": "^3.19.7",
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "express-brute": "^1.0.1",
         "express-rate-limit": "^5.1.3",
