@@ -1,7 +1,7 @@
-import { OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
-
-export class Destroyer implements OnDestroy {
+@Injectable()
+export abstract class Destroyer implements OnDestroy {
     destroy$: Subject<boolean> = new Subject<boolean>();
 
     ngOnDestroy() {
