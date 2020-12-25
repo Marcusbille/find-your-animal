@@ -15,12 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use(function (req, res, next) {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://www.google-analytics.com 'unsafe-inline' 'unsafe-eval'");
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com 'unsafe-inline' 'unsafe-eval'");
-    return next();
-});
-
 app.use(express.static(__dirname + "/dist/find-your-animal"));
 const db = require("./app/models");
 db.sequelize.sync();
